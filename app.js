@@ -1,23 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    function initOrderPage() {
-        // --- DONNÉES DE L'APPLICATION AVEC ICÔNES MISES À JOUR ---
-        const services = [
-            { name: "Chemise & polo", price: 3000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
-            { name: "Pantalon & jeans", price: 4000, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pentalon" class="h-8 w-8 text-blue-500" />' },
-            { name: "jupe", price: 4000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" />' },
-            { name: "Robe ", price: 5000, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" />' },
-            { name: "Manteau homme/femme", price: 8000, icon: '<img src="assets/coat-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
-            { name: "Pull & jacket", price: 6000, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" />' },
-            { name: "Ensemble training", price: 8000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
-            { name: "Pagne", price: 6000, icon: '<img src="assets/pagne.svg" alt="training" class="h-8 w-8 text-blue-500" /> ' },
-            { name: "Rideaux (par m²)", price: 5000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" />' },
-            { name: "Draps (bonus taie d'oreiller)", price: 9000, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" />' }
-        ];
-        const deliveryCost = 6000;
-        const deliveryFreeThreshold = 50000;
-        const phoneNumber = "243995432688";
+    // --- DONNÉES DE L'APPLICATION AVEC ICÔNES MISES À JOUR ---
+    // Cette constante est maintenant la source unique pour les tarifs sur tout le site.
+    const services = [
+        { name: "veste & pentalon veste", price: 7000, icon: '<img src="assets/suit-and-tie-outfit-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
+        { name: "Chemise & polo", price: 2000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
+        { name: "Pantalon & jeans", price: 3000, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pentalon" class="h-8 w-8 text-blue-500" />' },
+        { name: "jupe et culotte", price: 2000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" />' },
+        { name: "Robe ", price: 4000, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" />' },
+        { name: "Pull & jacket", price: 4000, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" />' },
+        { name: "Pagne", price: 5000, icon: '<img src="assets/pagne.svg" alt="training" class="h-8 w-8 text-blue-500" /> ' },
+        { name: "Manteau homme/femme", price: 7000, icon: '<img src="assets/coat-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
+        { name: "Ensemble training", price: 5000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
+        { name: "chaussures", price: 7000, icon: '<img src="assets/shoes-shoe-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
+        { name: "Draps (bonus taie d'oreiller)", price: 3500, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" />' },
+        { name: "Rideaux (par m²)", price: 5000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" />' }
+    ];
 
+    const deliveryCost = 6000;
+    const deliveryFreeThreshold = 50000;
+    const phoneNumber = "243995432688";
+
+    // --- LOGIQUE POUR LA PAGE D'ACCUEIL ---
+    function initHomePage() {
+        const tariffsContainer = document.getElementById('tariffs-list-container');
+        if (!tariffsContainer) return;
+
+        // Regroupe les articles par prix pour un affichage plus propre si nécessaire,
+        // ou simplement les afficher tous. Ici nous les divisons en deux colonnes.
+        const allTariffsHtml = services.map(service => `
+            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                <span>${service.name}</span>
+                <span class="font-bold text-blue-700">${service.price.toLocaleString('fr-FR')} FC</span>
+            </div>
+        `).join('');
+
+        tariffsContainer.innerHTML = `
+            <div class="space-y-4">${allTariffsHtml.slice(0, allTariffsHtml.length / 2)}</div>
+            <div class="space-y-4">${allTariffsHtml.slice(allTariffsHtml.length / 2)}</div>
+        `;
+        
+        // Alternative plus simple si l'ordre n'importe pas :
+        // tariffsContainer.innerHTML = services.map(service => `...`).join('');
+        // Le CSS `grid-cols-2` s'occupera de la mise en page.
+        // Pour ce cas, on garde la division manuelle pour un meilleur équilibre.
+        
+        const column1 = document.createElement('div');
+        column1.className = 'space-y-4';
+        const column2 = document.createElement('div');
+        column2.className = 'space-y-4';
+
+        services.forEach((service, index) => {
+            const itemHtml = `
+                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                    <span>${service.name}</span>
+                    <span class="font-bold text-blue-700">${service.price.toLocaleString('fr-FR')} FC</span>
+                </div>`;
+            if (index < services.length / 2) {
+                column1.innerHTML += itemHtml;
+            } else {
+                column2.innerHTML += itemHtml;
+            }
+        });
+
+        tariffsContainer.innerHTML = ''; // Vide le conteneur
+        tariffsContainer.appendChild(column1);
+        tariffsContainer.appendChild(column2);
+    }
+
+    // --- LOGIQUE POUR LA PAGE DE COMMANDE ---
+    function initOrderPage() {
         let cart = {};
 
         // SÉLECTEURS DU DOM
@@ -95,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const hasItems = subtotal > 0;
             let finalDeliveryCost = hasItems ? deliveryCost : 0;
             
-            // Condition pour la livraison gratuite
             if (subtotal >= deliveryFreeThreshold) {
                 finalDeliveryCost = 0;
             }
@@ -137,8 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
             message += "--- *Détails de la commande* ---\n";
             
             for (const name in cart) {
-                message += `• ${cart[name].quantity}x *${name}*\n`;
-            }
+            const item = cart[name];
+            const itemTotal = item.quantity * item.price;
+            message += `• ${item.quantity}x *${name}* (à ${item.price.toLocaleString('fr-FR')} FC) = ${itemTotal.toLocaleString('fr-FR')} FC\n`;
+               }
             
             message += "\n--- *Récapitulatif* ---\n";
             message += `*Sous-total* : ${subtotalEl.textContent}\n`;
@@ -173,8 +226,11 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotals();
     }
     
-    // Détecter si on est sur la page de commande pour l'initialiser
+    // --- LANCE LES FONCTIONS SELON LA PAGE ACTIVE ---
     if (document.getElementById('service-list')) {
         initOrderPage();
+    }
+    if (document.getElementById('tariffs-list-container')) {
+        initHomePage();
     }
 });
