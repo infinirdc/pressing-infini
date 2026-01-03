@@ -4,259 +4,88 @@
     --dark-teal: #065a53;
     --cream: #fffdf8;
     --white: #ffffff;
+    --blue-accent: #2563eb; /* Couleur bouton commander */
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Default body font */
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: var(--cream);
+    background-color: #f8fafc;
     color: #333;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bebas Neue', sans-serif; /* Titles font */
-    color: var(--dark-teal);
-    letter-spacing: 2px;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Hero Section */
-.hero-section {
-    background-color: var(--primary-teal);
-    color: var(--white);
-    padding: 50px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.hero-left,
-.hero-right {
-    flex: 1;
-    min-width: 300px;
-}
-
-.hero-left h1 {
-    font-size: 4em;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.hero-left p {
-    font-size: 1.1em;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
-
-.services-icons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.service-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1.1em;
-}
-
-.service-item img {
-    width: 40px;
-    height: 40px;
-    filter: invert(100%); /* Make SVG icons white */
-}
-
-.hero-right .logo {
-    text-align: right;
-    margin-bottom: 20px;
-}
-
-.hero-right .logo img {
-    max-width: 150px;
-    height: auto;
-}
-
-.hero-right h2 {
-    font-size: 2em;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.service-list {
-    list-style: none;
-    padding: 0;
-}
-
-.service-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-
-.service-list img {
-    width: 20px;
-    height: 20px;
-    filter: invert(100%); /* Make SVG checkmarks white */
-}
-
-.hero-illustration {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.hero-illustration img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Prices Section */
-.prices-section {
-    padding: 80px 0;
-    background-color: var(--cream);
-}
-
-.price-card {
-    background-color: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.price-card h2 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: var(--dark-teal);
-}
-
-.price-card table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-}
-
-.price-card th,
-.price-card td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-}
-
-.price-card th {
-    background-color: var(--primary-teal);
-    color: var(--white);
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-}
-
-.price-card td {
-    font-family: 'Montserrat', sans-serif;
-}
-
-.delivery-info {
-    font-size: 1.2em;
-    font-weight: 700;
     color: var(--dark-teal);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    letter-spacing: 1px;
 }
 
-.delivery-info img {
-    width: 30px;
-    height: 30px;
-    filter: invert(20%) sepia(100%) saturate(1000%) hue-rotate(140deg) brightness(60%); /* Adjust to match dark teal */
+/* Header & Nav */
+header {
+    transition: all 0.3s ease;
 }
 
-/* Contact Bar */
-.contact-bar {
+/* Bouton Flottant (CTA) Page Accueil */
+.floating-cta {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-teal);
-    color: var(--white);
-    padding: 15px 0;
-    text-align: center;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--blue-accent);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    font-weight: bold;
+    font-size: 1.1rem;
     z-index: 1000;
-}
-
-.contact-bar a {
-    color: var(--white);
-    text-decoration: none;
-    font-size: 1.3em;
-    font-weight: 700;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: bounce-gentle 3s infinite;
 }
 
-.contact-bar img {
-    width: 30px;
-    height: 30px;
-    filter: invert(100%);
+.floating-cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.6);
 }
 
-/* Responsive Design */
+@keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Filtres Catégories (Page Commande) */
+.filter-btn {
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.filter-btn.active {
+    background-color: var(--blue-accent);
+    color: white;
+    border-color: var(--blue-accent);
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Badge du Panier */
+.cart-badge {
+    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* Ajustements Mobile */
 @media (max-width: 768px) {
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-left,
-    .hero-right {
-        min-width: unset;
-        width: 100%;
-    }
-
-    .hero-right .logo {
-        text-align: center;
-    }
-
-    .services-icons {
-        align-items: center;
-    }
-
-    .service-list {
-        text-align: left;
-        padding-left: 20px;
-    }
-
-    .hero-left h1 {
-        font-size: 3em;
-    }
-
-    .price-card h2 {
-        font-size: 2em;
-    }
-
-    .contact-bar a {
-        font-size: 1em;
+    .floating-cta {
+        bottom: 80px; /* Pour ne pas cacher le footer WhatsApp s'il y en a un */
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 }
