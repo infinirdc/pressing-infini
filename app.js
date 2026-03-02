@@ -1,23 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     const services = [
-        { categories: ['homme'], name: "veste & pentalon veste", price: 7000, icon: '<img src="assets/suit-and-tie-outfit-svgrepo-com.svg" alt="veste" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme'], name: "Chemise & polo", price: 2000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme'], name: "Pantalon & jeans", price: 3000, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pantalon" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['femme'], name: "jupe et culotte", price: 2000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['femme'], name: "Robe ", price: 4000, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "Pull & jacket", price: 4000, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['femme'], name: "Pagne", price: 5000, icon: '<img src="assets/pagne.svg" alt="pagne" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "Manteau homme/femme", price: 7000, icon: '<img src="assets/coat-svgrepo-com.svg" alt="manteau" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "Ensemble training", price: 5000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "chaussures", price: 7000, icon: '<img src="assets/shoes-shoe-svgrepo-com.svg" alt="chaussures" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['maison'], name: "Draps (bonus taie d'oreiller)", price: 3500, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['maison'], name: "Rideaux (par m²)", price: 5000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" />' }
+        { categories: ['homme'], name: "veste & pentalon veste", price: 4500, icon: '<img src="assets/suit-and-tie-outfit-svgrepo-com.svg" alt="veste" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['homme'], name: "Chemise & polo", price: 1000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['homme'], name: "Pantalon & jeans", price: 1500, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pantalon" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['femme'], name: "jupe et culotte", price: 1000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['femme'], name: "Robe ", price: 2500, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['homme', 'femme'], name: "Pull & jacket", price: 2500, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['femme'], name: "Pagne", price: 3000, icon: '<img src="assets/pagne.svg" alt="pagne" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['homme', 'femme'], name: "Manteau homme/femme", price: 4500, icon: '<img src="assets/coat-svgrepo-com.svg" alt="manteau" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['homme', 'femme'], name: "Ensemble training", price: 3000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['homme', 'femme'], name: "chaussures", price: 4500, icon: '<img src="assets/shoes-shoe-svgrepo-com.svg" alt="chaussures" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['maison'], name: "Draps (bonus taie d'oreiller)", price: 2000, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" />' },
+        { categories: ['maison'], name: "Rideaux (par m²)", price: 3000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" />' }
     ];
     
-    const deliveryCost = 6000;
-    const deliveryFreeThreshold = 50000;
-    const phoneNumber = "243995432688";
+    const deliveryCost = 3000;
+    const deliveryFreeThreshold = 25000;
+    const phoneNumber = "250792891306";
     
     let cart = JSON.parse(localStorage.getItem('infiniCart')) || {};
     
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const itemHtml = `
                 <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
                     <span>${service.name}</span>
-                    <span class="font-bold text-blue-700">${service.price.toLocaleString('fr-FR')} FC</span>
+                    <span class="font-bold text-blue-700">${service.price.toLocaleString('fr-FR')} RWF</span>
                 </div>`;
             if (index < services.length / 2) {
                 column1.innerHTML += itemHtml;
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div>
                             <p class="font-bold text-base sm:text-lg text-gray-800">${service.name}</p>
-                            <p class="text-blue-600 font-semibold">${service.price.toLocaleString('fr-FR')} FC</p>
+                            <p class="text-blue-600 font-semibold">${service.price.toLocaleString('fr-FR')} RWF</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 self-end sm:self-auto">
@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             renderCart();
             updateTotals();
             updateQuantityInputs();
+            updateCartCountDisplay();
         }
         
         function updateQuantityInputs() {
@@ -143,9 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="flex justify-between items-center text-md">
                     <div>
                         <p class="font-semibold text-gray-800">${name}</p>
-                        <p class="text-sm text-gray-500">${item.quantity} x ${item.price.toLocaleString('fr-FR')} FC</p>
+                        <p class="text-sm text-gray-500">${item.quantity} x ${item.price.toLocaleString('fr-FR')} RWF</p>
                     </div>
-                    <span class="font-bold text-gray-800">${(item.quantity * item.price).toLocaleString('fr-FR')} FC</span>
+                    <span class="font-bold text-gray-800">${(item.quantity * item.price).toLocaleString('fr-FR')} RWF</span>
                 </div>
             `).join('');
         }
@@ -161,17 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const total = subtotal + finalDeliveryCost;
             
-            if (subtotalEl) subtotalEl.textContent = `${subtotal.toLocaleString('fr-FR')} FC`;
+            if (subtotalEl) subtotalEl.textContent = `${subtotal.toLocaleString('fr-FR')} RWF`;
             
             if (deliveryFeeEl) {
                 if (hasItems && subtotal >= deliveryFreeThreshold) {
                     deliveryFeeEl.innerHTML = `<span class="text-green-600 font-bold">Offerte !</span>`;
                 } else {
-                    deliveryFeeEl.textContent = `${finalDeliveryCost.toLocaleString('fr-FR')} FC`;
+                    deliveryFeeEl.textContent = `${finalDeliveryCost.toLocaleString('fr-FR')} RWF`;
                 }
             }
             
-            if (totalEl) totalEl.textContent = `${total.toLocaleString('fr-FR')} FC`;
+            if (totalEl) totalEl.textContent = `${total.toLocaleString('fr-FR')} RWF`;
             
             if (orderButton) orderButton.disabled = !hasItems;
         }
@@ -179,15 +180,24 @@ document.addEventListener('DOMContentLoaded', () => {
         function sendOrder() {
             const customerName = customerNameEl.value.trim();
             const customerAddress = customerAddressEl.value.trim();
+            const notificationMessage = document.getElementById('notification-message');
+            const notificationText = document.getElementById('notification-text');
+            
+            notificationMessage.classList.add('hidden'); // Cacher la notification par défaut
             
             if (!customerName || !customerAddress) {
-                alert("Veuillez remplir votre nom et adresse");
+                notificationText.textContent = "Veuillez remplir votre nom et adresse.";
+                notificationMessage.classList.remove('hidden');
                 return;
             }
             
-            if (Object.keys(cart).length === 0) return;
+            if (Object.keys(cart).length === 0) {
+                notificationText.textContent = "Votre panier est vide. Veuillez ajouter des articles.";
+                notificationMessage.classList.remove('hidden');
+                return;
+            }
             
-            let message = `*Nouvelle commande - Infini Pressing*\n\n`;
+            let message = `*Nouvelle commande - Be Clean Laundry Service*\n\n`;
             message += `*Client :* ${customerName}\n`;
             message += `*Adresse :* ${customerAddress}\n\n`;
             message += "--- *Détails de la commande* ---\n";
@@ -195,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (const name in cart) {
                 const item = cart[name];
                 const itemTotal = item.quantity * item.price;
-                message += `• ${item.quantity}x *${name}* (à ${item.price.toLocaleString('fr-FR')} FC) = ${itemTotal.toLocaleString('fr-FR')} FC\n`;
+                message += `• ${item.quantity}x *${name}* (à ${item.price.toLocaleString('fr-FR')} RWF) = ${itemTotal.toLocaleString('fr-FR')} RWF\n`;
             }
             
             message += "\n--- *Récapitulatif* ---\n";
@@ -203,9 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const finalDeliveryCost = subtotal >= deliveryFreeThreshold ? 0 : deliveryCost;
             const total = subtotal + finalDeliveryCost;
             
-            message += `*Sous-total* : ${subtotal.toLocaleString('fr-FR')} FC\n`;
-            message += `*Livraison* : ${finalDeliveryCost === 0 ? 'Offerte !' : finalDeliveryCost.toLocaleString('fr-FR') + ' FC'}\n`;
-            message += `*TOTAL À PAYER* : *${total.toLocaleString('fr-FR')} FC*\n\n`;
+            message += `*Sous-total* : ${subtotal.toLocaleString('fr-FR')} RWF\n`;
+            message += `*Livraison* : ${finalDeliveryCost === 0 ? 'Offerte !' : finalDeliveryCost.toLocaleString('fr-FR') + ' RWF'}\n`;
+            message += `*TOTAL À PAYER* : *${total.toLocaleString('fr-FR')} RWF*\n\n`;
             message += "Merci.";
             
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -235,10 +245,23 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotals();
     }
     
+    function updateCartCountDisplay() {
+        const cartCountEl = document.getElementById('cart-count');
+        if (cartCountEl) {
+            const totalItems = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            console.log('Updating cart count display. Total items:', totalItems);
+            cartCountEl.textContent = totalItems;
+            cartCountEl.style.display = totalItems > 0 ? 'flex' : 'none';
+        } else {
+            console.log('cart-count element not found.');
+        }
+    }
+
     if (document.getElementById('service-list')) {
         initOrderPage();
     }
     if (document.getElementById('tariffs-list-container')) {
         initHomePage();
     }
+    updateCartCountDisplay();
 });
