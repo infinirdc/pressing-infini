@@ -1,26 +1,68 @@
+/**
+ * Initialisation globale de l'application Infini Pressing.
+ * Gère le splash screen, le catalogue de services et le panier.
+ */
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- CONFIGURATION ET DONNÉES ---
+    
+    /**
+     * Liste des services disponibles avec leurs catégories, noms, prix et icônes.
+     */
     const services = [
-        { categories: ['homme'], name: "veste & pentalon veste", price: 7000, icon: '<img src="assets/suit-and-tie-outfit-svgrepo-com.svg" alt="veste" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme'], name: "Chemise & polo", price: 2000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme'], name: "Pantalon & jeans", price: 3000, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pantalon" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['femme'], name: "jupe et culotte", price: 2000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['femme'], name: "Robe ", price: 4000, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "Pull & jacket", price: 4000, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['femme'], name: "Pagne", price: 5000, icon: '<img src="assets/pagne.svg" alt="pagne" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "Manteau homme/femme", price: 7000, icon: '<img src="assets/coat-svgrepo-com.svg" alt="manteau" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "Ensemble training", price: 5000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['homme', 'femme'], name: "chaussures", price: 7000, icon: '<img src="assets/shoes-shoe-svgrepo-com.svg" alt="chaussures" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['maison'], name: "Draps (bonus taie d'oreiller)", price: 3500, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" />' },
-        { categories: ['maison'], name: "Rideaux (par m²)", price: 5000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" />' }
+        { categories: ['homme'], name: "veste & pentalon veste", price: 7000, icon: '<img src="assets/suit-and-tie-outfit-svgrepo-com.svg" alt="veste" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['homme'], name: "Chemise & polo", price: 2000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['homme'], name: "Pantalon & jeans", price: 3000, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pantalon" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['femme'], name: "jupe et culotte", price: 2000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['femme'], name: "Robe ", price: 4000, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['homme', 'femme'], name: "Pull & jacket", price: 4000, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['femme'], name: "Pagne", price: 5000, icon: '<img src="assets/pagne.svg" alt="pagne" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['homme', 'femme'], name: "Manteau homme/femme", price: 7000, icon: '<img src="assets/coat-svgrepo-com.svg" alt="manteau" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['homme', 'femme'], name: "Ensemble training", price: 5000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['homme', 'femme'], name: "chaussures", price: 7000, icon: '<img src="assets/shoes-shoe-svgrepo-com.svg" alt="chaussures" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['maison'], name: "Draps (bonus taie d'oreiller)", price: 3500, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" loading="lazy" />' },
+        { categories: ['maison'], name: "Rideaux (par m²)", price: 5000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" loading="lazy" />' }
     ];
     
     const deliveryCost = 6000;
     const deliveryFreeThreshold = 50000;
     const phoneNumber = "243995432688";
     
+    // Initialisation du panier depuis le localStorage
     let cart = JSON.parse(localStorage.getItem('infiniCart')) || {};
     
+    // --- GESTION DU SPLASH SCREEN ---
+    
+    /**
+     * Gère l'affichage et la disparition du splash screen.
+     * Le splash screen ne s'affiche qu'une fois par session.
+     */
+    function handleSplashScreen() {
+        const splash = document.getElementById('splash-screen');
+        if (!splash) return;
+
+        // Si le splash a déjà été montré durant cette session, on le cache immédiatement
+        if (sessionStorage.getItem('splashShown')) {
+            splash.style.display = 'none';
+            return;
+        }
+
+        // Sinon, on le cache après un délai pour laisser place au contenu
+        sessionStorage.setItem('splashShown', '1');
+        setTimeout(() => {
+            splash.classList.add('hidden');
+            // On retire complètement du DOM après la transition CSS pour libérer des ressources
+            setTimeout(() => {
+                splash.style.display = 'none';
+            }, 1000); // Correspond à la durée de la transition dans styles.css
+        }, 4000); // Temps d'affichage minimal (exactement 4 secondes)
+    }
+
+    // --- LOGIQUE PAGE D'ACCUEIL ---
+    
+    /**
+     * Initialise la liste des tarifs sur la page d'accueil.
+     */
     function initHomePage() {
         const tariffsContainer = document.getElementById('tariffs-list-container');
         if (!tariffsContainer) return;
@@ -48,6 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tariffsContainer.appendChild(column2);
     }
     
+    // --- LOGIQUE PAGE DE COMMANDE ---
+    
+    /**
+     * Initialise toutes les fonctionnalités de la page de commande.
+     */
     function initOrderPage() {
         const serviceListContainer = document.getElementById('service-list');
         const cartItemsContainer = document.getElementById('cart-items');
@@ -62,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!serviceListContainer) return;
         
-        // Gestionnaire d'événements unique pour les boutons de quantité
+        // Gestionnaire d'événements unique pour les boutons de quantité (Délégation d'événements)
         serviceListContainer.addEventListener('click', (e) => {
             const button = e.target.closest('.quantity-change');
             if (button) {
@@ -79,6 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
+        /**
+         * Affiche la liste des services filtrés.
+         * @param {string} filter - La catégorie à filtrer ('all', 'homme', 'femme', 'maison').
+         */
         function renderServices(filter = 'all') {
             const filtered = filter === 'all' ?
                 services :
@@ -107,6 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join('');
         }
         
+        /**
+         * Met à jour le panier et déclenche le rendu.
+         */
         function updateCart(name, quantity) {
             const service = services.find(s => s.name === name);
             
@@ -122,6 +176,9 @@ document.addEventListener('DOMContentLoaded', () => {
             updateQuantityInputs();
         }
         
+        /**
+         * Met à jour visuellement les inputs de quantité.
+         */
         function updateQuantityInputs() {
             document.querySelectorAll('.quantity-input').forEach(input => {
                 const name = input.dataset.name;
@@ -130,6 +187,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
+        /**
+         * Affiche le récapitulatif du panier.
+         */
         function renderCart() {
             if (Object.keys(cart).length === 0) {
                 if (cartItemsContainer) cartItemsContainer.innerHTML = '';
@@ -150,6 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
             `).join('');
         }
         
+        /**
+         * Calcule et met à jour les totaux (sous-total, livraison, total).
+         */
         function updateTotals() {
             const subtotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const hasItems = subtotal > 0;
@@ -176,6 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (orderButton) orderButton.disabled = !hasItems;
         }
         
+        /**
+         * Prépare et envoie la commande via WhatsApp.
+         */
         function sendOrder() {
             const customerName = customerNameEl.value.trim();
             const customerAddress = customerAddressEl.value.trim();
@@ -212,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(whatsappUrl, '_blank');
         }
         
+        // Gestion des filtres par catégorie
         if (filterBtns.length > 0) {
             filterBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -230,11 +297,18 @@ document.addEventListener('DOMContentLoaded', () => {
             orderButton.addEventListener('click', sendOrder);
         }
         
+        // Initialisation du rendu
         renderServices();
         renderCart();
         updateTotals();
     }
     
+    // --- EXÉCUTION INITIALE ---
+    
+    // Gestion du Splash Screen
+    handleSplashScreen();
+
+    // Initialisation selon la page
     if (document.getElementById('service-list')) {
         initOrderPage();
     }

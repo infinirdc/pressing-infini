@@ -1,10 +1,13 @@
 /* General Styles */
 :root {
-    --primary-teal: #0d7b72;
-    --dark-teal: #065a53;
-    --cream: #fffdf8;
+    --primary-blue: #2563eb;
+    --dark-blue: #1e40af;
+    --light-blue: #dbeafe;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --bg-light: #f8fafc;
     --white: #ffffff;
-    --blue-accent: #2563eb; /* Couleur bouton commander */
+    --black: #0f172a;
 }
 
 body {
@@ -12,14 +15,171 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f8fafc;
-    color: #333;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
-    color: var(--dark-teal);
-    letter-spacing: 1px;
+    color: var(--black);
+    font-weight: 700;
+}
+
+/* ===== SPLASH SCREEN LUXURY & TECH ===== */
+#splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #ffffff; /* Blanc pur */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 1s cubic-bezier(0.8, 0, 0.2, 1), visibility 1s;
+}
+
+#splash-screen::before {
+    content: '';
+    position: absolute;
+    width: 200vw;
+    height: 200vh;
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, rgba(255,255,255,0) 60%);
+    animation: rotateGlow 8s linear infinite;
+    pointer-events: none;
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Cercle central organique inspiré des ondes / de l'eau */
+.splash-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 40px rgba(37, 99, 235, 0.05), inset 0 0 40px rgba(37, 99, 235, 0.05);
+    animation: pulseRing 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.splash-ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
+.splash-ring:nth-child(2) { width: 450px; height: 450px; animation-delay: 0.2s; border-color: rgba(37, 99, 235, 0.15); }
+.splash-ring:nth-child(3) { width: 600px; height: 600px; animation-delay: 0.4s; }
+
+/* Conteneur du logo */
+.splash-logo-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+#splash-logo {
+    position: relative;
+    animation: logoReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.1));
+}
+
+#splash-logo::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+#splash-brand {
+    color: var(--black); /* Noir profond */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    animation: textFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s forwards;
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+#splash-brand span {
+    font-weight: 700;
+    color: var(--primary-blue);
+    text-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+}
+
+#splash-tagline {
+    color: var(--text-light); /* Gris élégant */
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: textFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 1.2s forwards;
+}
+
+/* Barre de chargement minimaliste premium */
+.splash-loader {
+    position: absolute;
+    bottom: 15%;
+    width: 200px;
+    height: 1px;
+    background: rgba(37, 99, 235, 0.2);
+    overflow: hidden;
+    opacity: 0;
+    animation: textFadeIn 1s ease 1.5s forwards;
+}
+
+.splash-loader::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: var(--primary-blue);
+    box-shadow: 0 0 10px var(--primary-blue), 0 0 20px rgba(37, 99, 235, 0.5);
+    animation: loadProgress 2.5s cubic-bezier(0.7, 0, 0.3, 1) 1.5s forwards;
+}
+
+/* Animations Keyframes */
+@keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulseRing {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: scale(1.2); opacity: 0; }
+}
+
+@keyframes logoReveal {
+    0% { transform: translateY(30px) scale(0.9); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes logoGlow {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    100% { opacity: 0.8; transform: scale(1.1); }
+}
+
+@keyframes textFadeIn {
+    0% { transform: translateY(15px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes loadProgress {
+    0% { width: 0%; left: 0; }
+    50% { width: 100%; left: 0; }
+    100% { width: 100%; left: 100%; }
 }
 
 /* Header & Nav */
@@ -32,7 +192,7 @@ header {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: var(--blue-accent);
+    background-color: var(--primary-blue);
     color: white;
     padding: 15px 25px;
     border-radius: 50px;
@@ -64,9 +224,9 @@ header {
 }
 
 .filter-btn.active {
-    background-color: var(--blue-accent);
+    background-color: var(--primary-blue);
     color: white;
-    border-color: var(--blue-accent);
+    border-color: var(--primary-blue);
     box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
 }
 
@@ -88,4 +248,7 @@ header {
         padding: 12px 20px;
         font-size: 1rem;
     }
+    
+    #splash-brand { font-size: 1.25rem; }
+    #splash-tagline { font-size: 0.875rem; }
 }
