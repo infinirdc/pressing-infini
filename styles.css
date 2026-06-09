@@ -17,6 +17,87 @@ body {
     background-color: var(--bg-light);
     color: var(--text-dark);
     font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+}
+
+.nav-cta,
+.floating-cta,
+.mobile-cta,
+.hero-primary-action,
+.hero-secondary-action,
+.tariff-cta,
+.footer-cta {
+    white-space: nowrap;
+}
+
+.nav-cta,
+.floating-cta,
+.mobile-cta,
+.hero-primary-action,
+.tariff-cta,
+.footer-cta {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-cta::before,
+.floating-cta::before,
+.mobile-cta::before,
+.hero-primary-action::before,
+.tariff-cta::before,
+.footer-cta::before {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.2) 45%, transparent 70%);
+    content: '';
+    transform: translateX(-120%);
+    transition: transform 0.5s ease;
+}
+
+.nav-cta:hover::before,
+.floating-cta:hover::before,
+.mobile-cta:hover::before,
+.hero-primary-action:hover::before,
+.tariff-cta:hover::before,
+.footer-cta:hover::before {
+    transform: translateX(120%);
+}
+
+.nav-cta > *,
+.floating-cta > *,
+.mobile-cta > *,
+.hero-primary-action > *,
+.tariff-cta > *,
+.footer-cta > * {
+    position: relative;
+    z-index: 1;
+}
+
+.floating-cta,
+.mobile-cta,
+.hero-primary-action,
+.tariff-cta,
+.footer-cta {
+    gap: 0.65rem;
+}
+
+.floating-cta span[aria-hidden],
+.mobile-cta span[aria-hidden],
+.hero-primary-action span[aria-hidden],
+.tariff-cta span[aria-hidden],
+.footer-cta span[aria-hidden] {
+    display: inline-flex;
+    transform: translateX(0);
+    transition: transform 0.2s ease;
+}
+
+.floating-cta:hover span[aria-hidden],
+.mobile-cta:hover span[aria-hidden],
+.hero-primary-action:hover span[aria-hidden],
+.tariff-cta:hover span[aria-hidden],
+.footer-cta:hover span[aria-hidden] {
+    transform: translateX(3px);
 }
 
 h1,
@@ -149,7 +230,112 @@ h6 {
     transform: scale(1.06);
 }
 
+.hero-content {
+    padding-top: clamp(4.5rem, 10vh, 7rem);
+    padding-bottom: clamp(4rem, 9vh, 6.5rem);
+}
+
+.hero-title {
+    max-width: 13ch;
+}
+
+.hero-subtitle {
+    text-wrap: balance;
+}
+
+.hero-eyebrow {
+    align-items: center;
+    max-width: 100%;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hero-actions a {
+    min-height: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-primary-action {
+    min-width: 260px;
+    box-shadow: 0 22px 46px rgba(37, 99, 235, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.24);
+}
+
+.hero-secondary-action {
+    min-width: 170px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.hero-primary-action:hover,
+.hero-secondary-action:hover {
+    transform: translateY(-2px);
+}
+
+.hero-benefits {
+    max-width: 740px;
+    align-items: stretch;
+}
+
+.hero-benefit {
+    display: flex;
+    min-height: 96px;
+    align-items: center;
+    gap: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.08));
+    padding: 1rem;
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.28);
+    backdrop-filter: blur(16px);
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hero-benefit:hover {
+    transform: translateY(-3px);
+    border-color: rgba(147, 197, 253, 0.55);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(37, 99, 235, 0.16));
+}
+
+.hero-benefit-icon {
+    display: inline-flex;
+    width: 46px;
+    height: 46px;
+    flex: 0 0 46px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.18);
+}
+
+.hero-benefit-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.hero-benefit p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 0.96rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.hero-benefit span:not(.hero-benefit-icon) {
+    display: block;
+    margin-top: 0.25rem;
+    color: #dbeafe;
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
 .tariff-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 180px;
     border: 1px solid #e7e5e4;
     border-radius: 18px;
@@ -157,6 +343,20 @@ h6 {
     padding: 1.25rem;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
     transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tariff-card a {
+    width: fit-content;
+}
+
+.tariff-cta {
+    align-items: center;
+    min-height: 42px;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+}
+
+.tariff-card h3 {
+    line-height: 1.25;
 }
 
 .tariff-card:hover {
@@ -201,6 +401,13 @@ h6 {
     padding: 1.5rem;
     text-align: left;
     box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-step:hover {
+    transform: translateY(-3px);
+    border-color: rgba(37, 99, 235, 0.22);
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.08);
 }
 
 .service-step span {
@@ -237,12 +444,47 @@ h6 {
     border-radius: 18px;
     background: #ffffff;
     padding: 1.1rem 1.25rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item[open],
+.faq-item:hover {
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.05);
 }
 
 .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     cursor: pointer;
     color: #0f172a;
     font-weight: 800;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary::after {
+    display: inline-flex;
+    width: 28px;
+    height: 28px;
+    flex: 0 0 28px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    background: #eff6ff;
+    color: var(--primary-blue);
+    content: '+';
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.faq-item[open] summary::after {
+    content: '-';
 }
 
 .faq-item p {
@@ -262,6 +504,7 @@ h6 {
 
 .filter-btn {
     white-space: nowrap;
+    min-height: 40px;
 }
 
 .filter-btn.active {
@@ -285,9 +528,40 @@ h6 {
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+.service-row > div:first-child {
+    min-width: 0;
+}
+
+.service-row h3 {
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
 .service-row:hover {
     border-color: rgba(37, 99, 235, 0.35);
     box-shadow: 0 18px 38px rgba(15, 23, 42, 0.07);
+}
+
+.zone-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zone-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--primary-blue);
+    content: '';
+    opacity: 0.85;
+}
+
+.zone-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(37, 99, 235, 0.18);
+    background: #ffffff;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
 }
 
 .quantity-btn {
@@ -305,6 +579,11 @@ h6 {
 
 .quantity-btn:hover {
     transform: translateY(-1px);
+}
+
+.quantity-input {
+    min-height: 38px;
+    border-radius: 999px;
 }
 
 .field-label {
@@ -328,6 +607,46 @@ h6 {
 .form-field:focus {
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.form-field::placeholder {
+    color: #94a3b8;
+}
+
+.footer-cta {
+    align-items: center;
+    box-shadow: 0 16px 32px rgba(37, 99, 235, 0.18);
+}
+
+button,
+a,
+summary,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 3px;
+}
+
+@media (max-width: 1024px) {
+    .hero-benefits {
+        max-width: 100%;
+    }
+
+    .hero-benefit {
+        min-height: 108px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
 }
 
 @keyframes rotateGlow {
@@ -367,6 +686,81 @@ h6 {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding-bottom: 5.75rem;
+    }
+
+    .nav-cta {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .mobile-cta {
+        min-height: 58px;
+        bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+
+    .hero-section,
+    .hero-content {
+        min-height: auto;
+    }
+
+    .hero-content {
+        align-items: flex-start;
+        padding-top: 4.5rem;
+        padding-bottom: 3.5rem;
+    }
+
+    .hero-copy {
+        width: 100%;
+    }
+
+    .hero-title {
+        max-width: 11ch;
+        font-size: clamp(2.45rem, 12vw, 4rem);
+        line-height: 1.04;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+        line-height: 1.65;
+    }
+
+    .hero-actions {
+        width: 100%;
+    }
+
+    .hero-actions a {
+        width: 100%;
+        min-height: 56px;
+        padding-right: 1.25rem;
+        padding-left: 1.25rem;
+        font-size: 1rem;
+    }
+
+    .hero-primary-action,
+    .hero-secondary-action {
+        min-width: 0;
+    }
+
+    .hero-benefit {
+        min-height: 0;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.9rem;
+    }
+
+    .hero-benefit-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+    }
+
+    .tariff-card,
+    .service-step {
+        min-height: auto;
+    }
+
     #splash-brand {
         font-size: 1.12rem;
         letter-spacing: 0.16em;
@@ -379,5 +773,38 @@ h6 {
     .splash-ring:nth-child(2),
     .splash-ring:nth-child(3) {
         display: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .nav-cta {
+        font-size: 0;
+        width: 42px;
+        height: 42px;
+        padding: 0;
+    }
+
+    .nav-cta::after {
+        position: relative;
+        z-index: 1;
+        content: '→';
+        font-size: 1rem;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.78rem;
+        line-height: 1.35;
+    }
+
+    .hero-benefit p {
+        font-size: 0.92rem;
+    }
+
+    .hero-benefit span:not(.hero-benefit-icon) {
+        font-size: 0.78rem;
+    }
+
+    .faq-item {
+        padding: 1rem;
     }
 }

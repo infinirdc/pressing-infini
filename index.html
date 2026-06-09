@@ -22,13 +22,13 @@
     <meta property="og:title" content="Infini Pressing | Pressing à domicile à Kinshasa">
     <meta property="og:description"
         content="Collecte, nettoyage, repassage et livraison de votre linge à domicile à Kinshasa. Commande simple via WhatsApp.">
-    <meta property="og:image" content="https://pressing-infini.vercel.app/assets/hero_machine.png">
+    <meta property="og:image" content="https://pressing-infini.vercel.app/assets/hero-folded-clothes.jpg">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Infini Pressing | Pressing à domicile à Kinshasa">
     <meta name="twitter:description"
         content="Collecte, nettoyage, repassage et livraison de linge à domicile à Kinshasa.">
-    <meta name="twitter:image" content="https://pressing-infini.vercel.app/assets/hero_machine.png">
+    <meta name="twitter:image" content="https://pressing-infini.vercel.app/assets/hero-folded-clothes.jpg">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,6 +36,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
+    <link rel="preload" as="image" href="assets/hero-folded-clothes.jpg">
     <link rel="stylesheet" href="styles.css">
 
     <script type="application/ld+json">
@@ -47,7 +48,7 @@
       "description": "Pressing à domicile à Kinshasa avec collecte, nettoyage, repassage et livraison.",
       "url": "https://pressing-infini.vercel.app/",
       "logo": "https://pressing-infini.vercel.app/assets/infini_trans_gestion_logo.svg",
-      "image": "https://pressing-infini.vercel.app/assets/hero_machine.png",
+      "image": "https://pressing-infini.vercel.app/assets/hero-folded-clothes.jpg",
       "telephone": "+243995432688",
       "email": "infinipressing@gmail.com",
       "priceRange": "$$",
@@ -99,7 +100,7 @@
     </div>
 
     <header class="sticky top-0 z-50 border-b border-white/60 bg-white/90 shadow-sm backdrop-blur-md">
-        <nav class="container mx-auto flex items-center justify-between px-4 py-3">
+        <nav class="container mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
             <a href="index.html" class="flex items-center gap-2" aria-label="Accueil Infini Pressing">
                 <img src="assets/infini_trans_gestion_logo.svg" alt="Logo Infini Pressing" class="h-12 w-12" width="48" height="48">
                 <span class="text-base font-extrabold tracking-tight text-slate-900 sm:text-lg">INFINI PRESSING</span>
@@ -108,60 +109,89 @@
                 <a href="#tarifs" class="hidden text-sm font-semibold text-slate-600 hover:text-blue-600 md:block">Tarifs</a>
                 <a href="#faq" class="hidden text-sm font-semibold text-slate-600 hover:text-blue-600 md:block">FAQ</a>
                 <a href="commande.html"
-                    class="rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700">
+                    class="nav-cta rounded-full bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700">
                     Commander
                 </a>
             </div>
         </nav>
     </header>
 
-    <a href="commande.html" class="fixed bottom-5 right-5 z-[100] flex items-center gap-3 rounded-full bg-blue-600 px-5 py-4 font-bold text-white shadow-2xl shadow-blue-700/30 transition hover:-translate-y-1 hover:bg-blue-700">
-        <span class="hidden sm:inline">Commander</span>
-        <span aria-hidden="true">+</span>
+    <a href="commande.html" class="floating-cta fixed bottom-5 right-5 z-[100] hidden items-center gap-3 rounded-full bg-blue-600 px-5 py-4 font-bold text-white shadow-2xl shadow-blue-700/30 transition hover:-translate-y-1 hover:bg-blue-700 sm:flex">
+        <span>Commander</span>
+        <span aria-hidden="true">→</span>
+    </a>
+
+    <a href="commande.html" class="mobile-cta fixed inset-x-4 bottom-4 z-[100] flex items-center justify-center gap-3 rounded-full bg-blue-600 px-5 py-4 text-center font-extrabold text-white shadow-2xl shadow-blue-950/25 sm:hidden">
+        <span>Commander maintenant</span>
+        <span aria-hidden="true">→</span>
     </a>
 
     <main>
-        <section class="relative min-h-[88vh] overflow-hidden bg-slate-950">
+        <section class="hero-section relative min-h-[88vh] overflow-hidden bg-slate-950">
             <div id="hero-bg-container" class="absolute inset-0 z-0">
-                <div class="hero-scene active absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_machine.png');"></div>
-                <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_iron.png');"></div>
-                <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_package.png');"></div>
-                <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_van.png');"></div>
+                <div class="hero-scene active absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.46)), url('assets/hero-folded-clothes.jpg'); background-position: center 48%;"></div>
+                <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.44)), url('assets/hero-laundry-basket.jpg'); background-position: center 45%;"></div>
+                <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.42)), url('assets/hero-simple-ironing.jpg');"></div>
             </div>
             <div class="absolute inset-0 z-10 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
 
-            <div class="relative z-20 container mx-auto flex min-h-[88vh] items-center px-6 py-20">
-                <div class="max-w-3xl">
-                    <p class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-blue-100 backdrop-blur">
+            <div class="hero-content relative z-20 container mx-auto flex min-h-[88vh] max-w-6xl items-center px-6 py-20">
+                <div class="hero-copy max-w-3xl">
+                    <p class="hero-eyebrow mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-blue-100 backdrop-blur">
                         Collecte et livraison à domicile à Kinshasa
                     </p>
-                    <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-7xl">
+                    <h1 class="hero-title text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-7xl">
                         Pressing à domicile à Kinshasa
                     </h1>
-                    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-2xl">
+                    <p class="hero-subtitle mt-6 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-2xl">
                         Nous récupérons votre linge, le nettoyons avec soin et le livrons propre, repassé et prêt à porter.
                     </p>
-                    <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+                    <div class="hero-actions mt-9 flex flex-col gap-4 sm:flex-row">
                         <a href="commande.html"
-                            class="rounded-full bg-blue-600 px-8 py-4 text-center text-lg font-bold text-white shadow-2xl shadow-blue-900/40 transition hover:bg-blue-500">
-                            Commander via WhatsApp
+                            class="hero-primary-action rounded-full bg-blue-600 px-8 py-4 text-center text-lg font-bold text-white shadow-2xl shadow-blue-900/40 transition hover:bg-blue-500">
+                            <span>Commander maintenant</span>
+                            <span aria-hidden="true">→</span>
                         </a>
                         <a href="#tarifs"
-                            class="rounded-full border border-white/30 bg-white/10 px-8 py-4 text-center text-lg font-bold text-white backdrop-blur transition hover:bg-white/20">
-                            Voir les tarifs
+                            class="hero-secondary-action rounded-full border border-white/30 bg-white/10 px-8 py-4 text-center text-lg font-bold text-white backdrop-blur transition hover:bg-white/20">
+                            Voir les prix
                         </a>
                     </div>
-                    <div class="mt-10 grid gap-3 text-sm font-semibold text-white sm:grid-cols-3">
-                        <div class="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">Livraison offerte dès 50 000 FC</div>
-                        <div class="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">Paiement à la livraison</div>
-                        <div class="rounded-xl border border-white/15 bg-white/10 p-4 backdrop-blur">Service du lundi au samedi</div>
+                    <div class="hero-benefits mt-10 grid gap-3 text-white sm:grid-cols-3">
+                        <div class="hero-benefit">
+                            <span class="hero-benefit-icon">
+                                <img src="assets/fast-delivery-truck-van-svgrepo-com.svg" alt="" loading="lazy">
+                            </span>
+                            <div>
+                                <p>Livraison offerte</p>
+                                <span>Dès 50 000 FC</span>
+                            </div>
+                        </div>
+                        <div class="hero-benefit">
+                            <span class="hero-benefit-icon">
+                                <img src="assets/cart-check-svgrepo-com.svg" alt="" loading="lazy">
+                            </span>
+                            <div>
+                                <p>Paiement simple</p>
+                                <span>À la livraison</span>
+                            </div>
+                        </div>
+                        <div class="hero-benefit">
+                            <span class="hero-benefit-icon">
+                                <img src="assets/smartphone-svgrepo-com.svg" alt="" loading="lazy">
+                            </span>
+                            <div>
+                                <p>Service régulier</p>
+                                <span>Du lundi au samedi</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="tarifs" class="bg-white py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto max-w-6xl px-6">
                 <div class="mx-auto mb-12 max-w-3xl text-center">
                     <p class="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Tarifs</p>
                     <h2 class="text-3xl font-extrabold text-slate-900 md:text-4xl">Des prix clairs avant de commander</h2>
@@ -172,7 +202,7 @@
         </section>
 
         <section id="services" class="bg-stone-50 py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto max-w-6xl px-6">
                 <div class="mx-auto mb-12 max-w-3xl text-center">
                     <p class="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Nos services</p>
                     <h2 class="text-3xl font-extrabold text-slate-900 md:text-4xl">Une routine simple, pensée pour votre semaine</h2>
@@ -207,23 +237,23 @@
         </section>
 
         <section class="bg-white py-20">
-            <div class="container mx-auto grid gap-8 px-6 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+            <div class="container mx-auto grid max-w-6xl gap-8 px-6 lg:grid-cols-[1fr_1.2fr] lg:items-center">
                 <div>
                     <p class="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Zones desservies</p>
                     <h2 class="text-3xl font-extrabold text-slate-900 md:text-4xl">Pressing à domicile dans Kinshasa</h2>
                     <p class="mt-4 text-slate-600">Nous organisons la collecte et la livraison selon votre adresse. Indiquez votre commune dans la commande WhatsApp pour une confirmation rapide.</p>
                 </div>
                 <div class="grid gap-3 sm:grid-cols-2">
-                    <div class="rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Gombe et centre-ville</div>
-                    <div class="rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Limete, Ngaliema, Kintambo</div>
-                    <div class="rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Lingwala, Barumbu, Kinshasa</div>
-                    <div class="rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Autres communes sur confirmation</div>
+                    <div class="zone-card rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Gombe et centre-ville</div>
+                    <div class="zone-card rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Limete, Ngaliema, Kintambo</div>
+                    <div class="zone-card rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Lingwala, Barumbu, Kinshasa</div>
+                    <div class="zone-card rounded-2xl border border-slate-100 bg-stone-50 p-5 font-semibold text-slate-700">Autres communes sur confirmation</div>
                 </div>
             </div>
         </section>
 
         <section id="faq" class="bg-stone-50 py-20">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto max-w-6xl px-6">
                 <div class="mx-auto mb-10 max-w-3xl text-center">
                     <p class="mb-3 text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Questions fréquentes</p>
                     <h2 class="text-3xl font-extrabold text-slate-900 md:text-4xl">Avant votre première commande</h2>
@@ -251,7 +281,7 @@
     </main>
 
     <footer class="bg-slate-950 py-12 text-white">
-        <div class="container mx-auto grid gap-10 px-6 md:grid-cols-3">
+        <div class="container mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-3">
             <div>
                 <div class="mb-4 flex items-center gap-3">
                     <img src="assets/infini_trans_gestion_logo.svg" alt="Logo Infini Pressing" class="h-11 w-11 brightness-0 invert" loading="lazy">
@@ -268,10 +298,13 @@
             <div>
                 <h2 class="mb-4 text-lg font-bold text-white">Commande</h2>
                 <p class="mb-4 text-slate-400">Collecte et livraison : 6 000 FC, offertes dès 50 000 FC.</p>
-                <a href="commande.html" class="inline-flex rounded-full bg-blue-600 px-5 py-3 font-bold text-white hover:bg-blue-500">Commander maintenant</a>
+                <a href="commande.html" class="footer-cta inline-flex rounded-full bg-blue-600 px-5 py-3 font-bold text-white hover:bg-blue-500">
+                    <span>Commander maintenant</span>
+                    <span aria-hidden="true">→</span>
+                </a>
             </div>
         </div>
-        <div class="container mx-auto mt-10 border-t border-slate-800 px-6 pt-6 text-center text-sm text-slate-500">
+        <div class="container mx-auto mt-10 max-w-6xl border-t border-slate-800 px-6 pt-6 text-center text-sm text-slate-500">
             © 2026 Infini Pressing. Tous droits réservés.
         </div>
     </footer>

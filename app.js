@@ -84,8 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <p class="shrink-0 text-lg font-black text-blue-700">${formatPrice(service.price)}</p>
                     </div>
-                    <a href="commande.html?service=${encodeURIComponent(service.id)}" class="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700">
-                        Commander cet article
+                    <a href="commande.html?service=${encodeURIComponent(service.id)}" class="tariff-cta mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700">
+                        <span>Ajouter à ma commande</span>
+                        <span aria-hidden="true">→</span>
                     </a>
                 </article>
             `;

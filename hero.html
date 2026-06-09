@@ -10,28 +10,62 @@
 </head>
 
 <body>
-    <section class="relative min-h-screen overflow-hidden bg-slate-950">
+    <section class="hero-section relative min-h-screen overflow-hidden bg-slate-950">
         <div class="absolute inset-0">
-            <div class="hero-scene active absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_machine.png');"></div>
-            <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_iron.png');"></div>
-            <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_package.png');"></div>
-            <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.46)), url('assets/hero_van.png');"></div>
+            <div class="hero-scene active absolute inset-0 bg-cover bg-center" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.46)), url('assets/hero-folded-clothes.jpg'); background-position: center 48%;"></div>
+            <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.44)), url('assets/hero-laundry-basket.jpg'); background-position: center 45%;"></div>
+            <div class="hero-scene absolute inset-0 bg-cover bg-center opacity-0" style="background-image: linear-gradient(90deg, rgba(15, 23, 42, 0.84), rgba(15, 23, 42, 0.42)), url('assets/hero-simple-ironing.jpg');"></div>
         </div>
 
-        <div class="relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6">
-            <div class="max-w-3xl">
-                <p class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-blue-100 backdrop-blur">
+        <div class="hero-content relative z-10 mx-auto flex min-h-screen max-w-6xl items-center px-6">
+            <div class="hero-copy max-w-3xl">
+                <p class="hero-eyebrow mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-blue-100 backdrop-blur">
                     Collecte et livraison à domicile à Kinshasa
                 </p>
-                <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-7xl">
+                <h1 class="hero-title text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-7xl">
                     Pressing à domicile à Kinshasa
                 </h1>
-                <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-2xl">
+                <p class="hero-subtitle mt-6 max-w-2xl text-lg leading-relaxed text-slate-200 md:text-2xl">
                     Nous récupérons votre linge, le nettoyons avec soin et le livrons propre, repassé et prêt à porter.
                 </p>
-                <a href="commande.html" class="mt-9 inline-flex rounded-full bg-blue-600 px-8 py-4 text-lg font-bold text-white shadow-2xl shadow-blue-900/40 transition hover:bg-blue-500">
-                    Commander via WhatsApp
-                </a>
+                <div class="hero-actions mt-9 flex flex-col gap-4 sm:flex-row">
+                    <a href="commande.html" class="hero-primary-action rounded-full bg-blue-600 px-8 py-4 text-center text-lg font-bold text-white shadow-2xl shadow-blue-900/40 transition hover:bg-blue-500">
+                        <span>Commander maintenant</span>
+                        <span aria-hidden="true">→</span>
+                    </a>
+                    <a href="index.html#tarifs" class="hero-secondary-action rounded-full border border-white/30 bg-white/10 px-8 py-4 text-center text-lg font-bold text-white backdrop-blur transition hover:bg-white/20">
+                        Voir les prix
+                    </a>
+                </div>
+                <div class="hero-benefits mt-10 grid gap-3 text-white sm:grid-cols-3">
+                    <div class="hero-benefit">
+                        <span class="hero-benefit-icon">
+                            <img src="assets/fast-delivery-truck-van-svgrepo-com.svg" alt="" loading="lazy">
+                        </span>
+                        <div>
+                            <p>Livraison offerte</p>
+                            <span>Dès 50 000 FC</span>
+                        </div>
+                    </div>
+                    <div class="hero-benefit">
+                        <span class="hero-benefit-icon">
+                            <img src="assets/cart-check-svgrepo-com.svg" alt="" loading="lazy">
+                        </span>
+                        <div>
+                            <p>Paiement simple</p>
+                            <span>À la livraison</span>
+                        </div>
+                    </div>
+                    <div class="hero-benefit">
+                        <span class="hero-benefit-icon">
+                            <img src="assets/smartphone-svgrepo-com.svg" alt="" loading="lazy">
+                        </span>
+                        <div>
+                            <p>Service régulier</p>
+                            <span>Du lundi au samedi</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
