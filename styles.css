@@ -1,254 +1,383 @@
-/* General Styles */
 :root {
     --primary-blue: #2563eb;
     --dark-blue: #1e40af;
-    --light-blue: #dbeafe;
-    --text-dark: #1e293b;
+    --text-dark: #0f172a;
     --text-light: #64748b;
-    --bg-light: #f8fafc;
+    --bg-light: #fafaf9;
     --white: #ffffff;
-    --black: #0f172a;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    overflow-x: hidden;
     background-color: var(--bg-light);
     color: var(--text-dark);
-    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Poppins', sans-serif;
-    color: var(--black);
-    font-weight: 700;
+    letter-spacing: 0;
 }
 
-/* ===== SPLASH SCREEN LUXURY & TECH ===== */
 #splash-screen {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background-color: #ffffff; /* Blanc pur */
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    transition: opacity 1s cubic-bezier(0.8, 0, 0.2, 1), visibility 1s;
-}
-
-#splash-screen::before {
-    content: '';
-    position: absolute;
-    width: 200vw;
-    height: 200vh;
-    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.05) 0%, rgba(255,255,255,0) 60%);
-    animation: rotateGlow 8s linear infinite;
-    pointer-events: none;
+    background: #ffffff;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
 }
 
 #splash-screen.hidden {
-    opacity: 0;
     visibility: hidden;
+    opacity: 0;
     pointer-events: none;
 }
 
-/* Cercle central organique inspiré des ondes / de l'eau */
-.splash-ring {
+#splash-screen::before {
     position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(37, 99, 235, 0.1);
-    box-shadow: 0 0 40px rgba(37, 99, 235, 0.05), inset 0 0 40px rgba(37, 99, 235, 0.05);
-    animation: pulseRing 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    width: 170vw;
+    height: 170vh;
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.08), rgba(255, 255, 255, 0) 58%);
+    content: '';
+    animation: rotateGlow 7s linear infinite;
 }
 
-.splash-ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; }
-.splash-ring:nth-child(2) { width: 450px; height: 450px; animation-delay: 0.2s; border-color: rgba(37, 99, 235, 0.15); }
-.splash-ring:nth-child(3) { width: 600px; height: 600px; animation-delay: 0.4s; }
+.splash-ring {
+    position: absolute;
+    border: 1px solid rgba(37, 99, 235, 0.12);
+    border-radius: 999px;
+    animation: pulseRing 2.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
 
-/* Conteneur du logo */
+.splash-ring:nth-child(1) {
+    width: 240px;
+    height: 240px;
+}
+
+.splash-ring:nth-child(2) {
+    width: 360px;
+    height: 360px;
+    animation-delay: 0.15s;
+}
+
+.splash-ring:nth-child(3) {
+    width: 480px;
+    height: 480px;
+    animation-delay: 0.3s;
+}
+
 .splash-logo-container {
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.3rem;
+    padding: 1rem;
+    text-align: center;
 }
 
-#splash-logo {
-    position: relative;
-    animation: logoReveal 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-    filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.1));
-}
-
-#splash-logo::after {
-    content: '';
-    position: absolute;
-    inset: -20px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
-    z-index: -1;
-    animation: logoGlow 3s ease-in-out infinite alternate;
+#splash-logo img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 30px rgba(37, 99, 235, 0.14));
 }
 
 #splash-brand {
-    color: var(--black); /* Noir profond */
+    color: var(--text-dark);
     font-family: 'Poppins', sans-serif;
-    font-size: 1.75rem;
-    font-weight: 300;
-    letter-spacing: 0.4em;
+    font-size: 1.55rem;
+    font-weight: 400;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    text-align: center;
-    opacity: 0;
-    animation: textFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.8s forwards;
-    text-shadow: 0 0 20px rgba(37, 99, 235, 0.1);
 }
 
 #splash-brand span {
-    font-weight: 700;
     color: var(--primary-blue);
-    text-shadow: 0 0 20px rgba(37, 99, 235, 0.3);
+    font-weight: 800;
 }
 
 #splash-tagline {
-    color: var(--text-light); /* Gris élégant */
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.15em;
+    color: var(--text-light);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    opacity: 0;
-    animation: textFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) 1.2s forwards;
 }
 
-/* Barre de chargement minimaliste premium */
 .splash-loader {
     position: absolute;
-    bottom: 15%;
-    width: 200px;
-    height: 1px;
-    background: rgba(37, 99, 235, 0.2);
+    bottom: 16%;
+    width: 180px;
+    height: 2px;
     overflow: hidden;
-    opacity: 0;
-    animation: textFadeIn 1s ease 1.5s forwards;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.14);
 }
 
 .splash-loader::after {
-    content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 0%;
+    inset: 0;
+    width: 45%;
+    border-radius: inherit;
     background: var(--primary-blue);
-    box-shadow: 0 0 10px var(--primary-blue), 0 0 20px rgba(37, 99, 235, 0.5);
-    animation: loadProgress 2.5s cubic-bezier(0.7, 0, 0.3, 1) 1.5s forwards;
+    content: '';
+    animation: loadProgress 1.2s ease-in-out infinite;
 }
 
-/* Animations Keyframes */
-@keyframes rotateGlow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.hero-scene {
+    transition: opacity 1.3s ease-in-out, transform 9s ease-in-out;
 }
 
-@keyframes pulseRing {
-    0% { transform: scale(0.8); opacity: 0; }
-    50% { opacity: 1; }
-    100% { transform: scale(1.2); opacity: 0; }
+.hero-scene.active {
+    opacity: 1;
+    transform: scale(1.06);
 }
 
-@keyframes logoReveal {
-    0% { transform: translateY(30px) scale(0.9); opacity: 0; }
-    100% { transform: translateY(0) scale(1); opacity: 1; }
+.tariff-card {
+    min-height: 180px;
+    border: 1px solid #e7e5e4;
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 1.25rem;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-@keyframes logoGlow {
-    0% { opacity: 0.3; transform: scale(0.9); }
-    100% { opacity: 0.8; transform: scale(1.1); }
+.tariff-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.09);
 }
 
-@keyframes textFadeIn {
-    0% { transform: translateY(15px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes loadProgress {
-    0% { width: 0%; left: 0; }
-    50% { width: 100%; left: 0; }
-    100% { width: 100%; left: 100%; }
-}
-
-/* Header & Nav */
-header {
-    transition: all 0.3s ease;
-}
-
-/* Bouton Flottant (CTA) Page Accueil */
-.floating-cta {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: var(--primary-blue);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-    font-weight: bold;
-    font-size: 1.1rem;
-    z-index: 1000;
-    display: flex;
+.tariff-icon,
+.service-icon {
+    display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
-    gap: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    animation: bounce-gentle 3s infinite;
+    justify-content: center;
+    border-radius: 999px;
+    background: #eff6ff;
 }
 
-.floating-cta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.6);
+.tariff-icon {
+    width: 48px;
+    height: 48px;
 }
 
-@keyframes bounce-gentle {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+.service-icon {
+    width: 52px;
+    height: 52px;
 }
 
-/* Filtres Catégories (Page Commande) */
+.tariff-icon img,
+.service-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.service-step {
+    position: relative;
+    min-height: 260px;
+    border: 1px solid #e7e5e4;
+    border-radius: 22px;
+    background: #ffffff;
+    padding: 1.5rem;
+    text-align: left;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+}
+
+.service-step span {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border-radius: 999px;
+    background: var(--primary-blue);
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.service-step img {
+    margin-bottom: 1rem;
+}
+
+.service-step h3 {
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.service-step p {
+    color: #64748b;
+    line-height: 1.6;
+}
+
+.faq-item {
+    border: 1px solid #e7e5e4;
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 1.1rem 1.25rem;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    color: #0f172a;
+    font-weight: 800;
+}
+
+.faq-item p {
+    margin-top: 0.8rem;
+    color: #64748b;
+    line-height: 1.7;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .filter-btn {
-    transition: all 0.3s ease;
     white-space: nowrap;
 }
 
 .filter-btn.active {
-    background-color: var(--primary-blue);
-    color: white;
     border-color: var(--primary-blue);
-    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.3);
+    background: var(--primary-blue);
+    color: #ffffff;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.18);
 }
 
-/* Badge du Panier */
-.cart-badge {
-    animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.service-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid #e7e5e4;
+    border-radius: 20px;
+    background: #ffffff;
+    padding: 1rem;
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-@keyframes popIn {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
+.service-row:hover {
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.07);
 }
 
-/* Ajustements Mobile */
-@media (max-width: 768px) {
-    .floating-cta {
-        bottom: 80px; /* Pour ne pas cacher le footer WhatsApp s'il y en a un */
-        right: 20px;
-        padding: 12px 20px;
-        font-size: 1rem;
+.quantity-btn {
+    display: flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.quantity-btn:hover {
+    transform: translateY(-1px);
+}
+
+.field-label {
+    margin-top: 0.25rem;
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.form-field {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    background: #ffffff;
+    padding: 0.9rem 1rem;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-field:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+@keyframes rotateGlow {
+    to {
+        transform: rotate(360deg);
     }
-    
-    #splash-brand { font-size: 1.25rem; }
-    #splash-tagline { font-size: 0.875rem; }
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(0.86);
+        opacity: 0;
+    }
+    35% {
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.14);
+        opacity: 0;
+    }
+}
+
+@keyframes loadProgress {
+    0% {
+        transform: translateX(-120%);
+    }
+    100% {
+        transform: translateX(260%);
+    }
+}
+
+@media (min-width: 640px) {
+    .service-row {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    #splash-brand {
+        font-size: 1.12rem;
+        letter-spacing: 0.16em;
+    }
+
+    #splash-tagline {
+        font-size: 0.74rem;
+    }
+
+    .splash-ring:nth-child(2),
+    .splash-ring:nth-child(3) {
+        display: none;
+    }
 }

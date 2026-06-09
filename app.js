@@ -1,318 +1,301 @@
 /**
  * Initialisation globale de l'application Infini Pressing.
- * Gère le splash screen, le catalogue de services et le panier.
+ * Gère le splash screen, le catalogue, le panier et la commande WhatsApp.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- CONFIGURATION ET DONNÉES ---
-    
-    /**
-     * Liste des services disponibles avec leurs catégories, noms, prix et icônes.
-     */
     const services = [
-        { categories: ['homme'], name: "veste & pentalon veste", price: 7000, icon: '<img src="assets/suit-and-tie-outfit-svgrepo-com.svg" alt="veste" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['homme'], name: "Chemise & polo", price: 2000, icon: '<img src="assets/clo-polo-svgrepo-com.svg" alt="polo" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['homme'], name: "Pantalon & jeans", price: 3000, icon: '<img src="assets/pants-svgrepo-com.svg" alt="pantalon" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['femme'], name: "jupe et culotte", price: 2000, icon: '<img src="assets/skirt-svgrepo-com.svg" alt="jupe" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['femme'], name: "Robe ", price: 4000, icon: '<img src="assets/dress-4-svgrepo-com.svg" alt="robe" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['homme', 'femme'], name: "Pull & jacket", price: 4000, icon: '<img src="assets/sweater-svgrepo-com.svg" alt="pull" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['femme'], name: "Pagne", price: 5000, icon: '<img src="assets/pagne.svg" alt="pagne" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['homme', 'femme'], name: "Manteau homme/femme", price: 7000, icon: '<img src="assets/coat-svgrepo-com.svg" alt="manteau" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['homme', 'femme'], name: "Ensemble training", price: 5000, icon: '<img src="assets/tracksuit-svgrepo-com.svg" alt="training" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['homme', 'femme'], name: "chaussures", price: 7000, icon: '<img src="assets/shoes-shoe-svgrepo-com.svg" alt="chaussures" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['maison'], name: "Draps (bonus taie d'oreiller)", price: 3500, icon: '<img src="assets/bed-3-svgrepo-com.svg" alt="drap" class="h-8 w-8 text-blue-500" loading="lazy" />' },
-        { categories: ['maison'], name: "Rideaux (par m²)", price: 5000, icon: '<img src="assets/window-curtains-svgrepo-com.svg" alt="rideaux" class="h-8 w-8 text-blue-500" loading="lazy" />' }
+        { id: 'costume', categories: ['homme'], name: 'Costume veste et pantalon', price: 7000, icon: 'assets/suit-and-tie-outfit-svgrepo-com.svg', alt: 'Costume' },
+        { id: 'chemise-polo', categories: ['homme'], name: 'Chemise ou polo', price: 2000, icon: 'assets/clo-polo-svgrepo-com.svg', alt: 'Chemise' },
+        { id: 'pantalon-jeans', categories: ['homme'], name: 'Pantalon ou jeans', price: 3000, icon: 'assets/pants-svgrepo-com.svg', alt: 'Pantalon' },
+        { id: 'jupe-culotte', categories: ['femme'], name: 'Jupe ou culotte', price: 2000, icon: 'assets/skirt-svgrepo-com.svg', alt: 'Jupe' },
+        { id: 'robe', categories: ['femme'], name: 'Robe', price: 4000, icon: 'assets/dress-4-svgrepo-com.svg', alt: 'Robe' },
+        { id: 'pull-veste', categories: ['homme', 'femme'], name: 'Pull ou veste légère', price: 4000, icon: 'assets/sweater-svgrepo-com.svg', alt: 'Pull' },
+        { id: 'pagne', categories: ['femme'], name: 'Pagne', price: 5000, icon: 'assets/pagne.svg', alt: 'Pagne' },
+        { id: 'manteau', categories: ['homme', 'femme'], name: 'Manteau homme ou femme', price: 7000, icon: 'assets/coat-svgrepo-com.svg', alt: 'Manteau' },
+        { id: 'training', categories: ['homme', 'femme'], name: 'Ensemble training', price: 5000, icon: 'assets/tracksuit-svgrepo-com.svg', alt: 'Training' },
+        { id: 'chaussures', categories: ['homme', 'femme'], name: 'Chaussures', price: 7000, icon: 'assets/shoes-shoe-svgrepo-com.svg', alt: 'Chaussures' },
+        { id: 'draps', categories: ['maison'], name: "Draps avec taie d'oreiller", price: 3500, icon: 'assets/bed-3-svgrepo-com.svg', alt: 'Draps' },
+        { id: 'rideaux', categories: ['maison'], name: 'Rideaux par m²', price: 5000, icon: 'assets/window-curtains-svgrepo-com.svg', alt: 'Rideaux' }
     ];
-    
+
     const deliveryCost = 6000;
     const deliveryFreeThreshold = 50000;
-    const phoneNumber = "243995432688";
-    
-    // Initialisation du panier depuis le localStorage
-    let cart = JSON.parse(localStorage.getItem('infiniCart')) || {};
-    
-    // --- GESTION DU SPLASH SCREEN ---
-    
-    /**
-     * Gère l'affichage et la disparition du splash screen.
-     * Le splash screen ne s'affiche qu'une fois par session.
-     */
+    const phoneNumber = '243995432688';
+    const currencyFormatter = new Intl.NumberFormat('fr-FR');
+    let cart = JSON.parse(localStorage.getItem('infiniCartV2')) || {};
+
+    function formatPrice(amount) {
+        return `${currencyFormatter.format(amount)} FC`;
+    }
+
+    function getService(id) {
+        return services.find((service) => service.id === id);
+    }
+
+    function saveCart() {
+        localStorage.setItem('infiniCartV2', JSON.stringify(cart));
+    }
+
+    function getSubtotal() {
+        return Object.entries(cart).reduce((sum, [id, item]) => {
+            const service = getService(id);
+            return service ? sum + service.price * item.quantity : sum;
+        }, 0);
+    }
+
+    function getDeliveryFee(subtotal) {
+        if (subtotal <= 0 || subtotal >= deliveryFreeThreshold) return 0;
+        return deliveryCost;
+    }
+
     function handleSplashScreen() {
         const splash = document.getElementById('splash-screen');
         if (!splash) return;
 
-        // Si le splash a déjà été montré durant cette session, on le cache immédiatement
         if (sessionStorage.getItem('splashShown')) {
             splash.style.display = 'none';
             return;
         }
 
-        // Sinon, on le cache après un délai pour laisser place au contenu
         sessionStorage.setItem('splashShown', '1');
         setTimeout(() => {
             splash.classList.add('hidden');
-            // On retire complètement du DOM après la transition CSS pour libérer des ressources
             setTimeout(() => {
                 splash.style.display = 'none';
-            }, 1000); // Correspond à la durée de la transition dans styles.css
-        }, 4000); // Temps d'affichage minimal (exactement 4 secondes)
+            }, 450);
+        }, 1200);
     }
 
-    // --- LOGIQUE PAGE D'ACCUEIL ---
-    
-    /**
-     * Initialise la liste des tarifs sur la page d'accueil.
-     */
     function initHomePage() {
         const tariffsContainer = document.getElementById('tariffs-list-container');
         if (!tariffsContainer) return;
-        
-        const column1 = document.createElement('div');
-        column1.className = 'space-y-4';
-        const column2 = document.createElement('div');
-        column2.className = 'space-y-4';
-        
-        services.forEach((service, index) => {
-            const itemHtml = `
-                <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
-                    <span>${service.name}</span>
-                    <span class="font-bold text-blue-700">${service.price.toLocaleString('fr-FR')} FC</span>
-                </div>`;
-            if (index < services.length / 2) {
-                column1.innerHTML += itemHtml;
-            } else {
-                column2.innerHTML += itemHtml;
-            }
-        });
-        
-        tariffsContainer.innerHTML = '';
-        tariffsContainer.appendChild(column1);
-        tariffsContainer.appendChild(column2);
+
+        tariffsContainer.innerHTML = services.map((service) => {
+            const categories = service.categories.map((category) => category[0].toUpperCase() + category.slice(1)).join(' / ');
+            return `
+                <article class="tariff-card">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="tariff-icon"><img src="${service.icon}" alt="" loading="lazy"></span>
+                            <div>
+                                <p class="text-xs font-bold uppercase tracking-[0.16em] text-blue-600">${categories}</p>
+                                <h3 class="mt-1 text-lg font-extrabold text-slate-900">${service.name}</h3>
+                            </div>
+                        </div>
+                        <p class="shrink-0 text-lg font-black text-blue-700">${formatPrice(service.price)}</p>
+                    </div>
+                    <a href="commande.html?service=${encodeURIComponent(service.id)}" class="mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700">
+                        Commander cet article
+                    </a>
+                </article>
+            `;
+        }).join('');
     }
-    
-    // --- LOGIQUE PAGE DE COMMANDE ---
-    
-    /**
-     * Initialise toutes les fonctionnalités de la page de commande.
-     */
+
     function initOrderPage() {
         const serviceListContainer = document.getElementById('service-list');
+        if (!serviceListContainer) return;
+
         const cartItemsContainer = document.getElementById('cart-items');
         const emptyCartMessage = document.getElementById('empty-cart-message');
         const subtotalEl = document.getElementById('subtotal');
         const deliveryFeeEl = document.getElementById('delivery-fee');
+        const deliveryNoteEl = document.getElementById('delivery-note');
         const totalEl = document.getElementById('total');
         const orderButton = document.getElementById('order-button');
+        const confirmation = document.getElementById('order-confirmation');
+        const clearCartButton = document.getElementById('clear-cart-button');
+        const editOrderButton = document.getElementById('edit-order-button');
         const customerNameEl = document.getElementById('customer-name');
+        const customerPhoneEl = document.getElementById('customer-phone');
         const customerAddressEl = document.getElementById('customer-address');
+        const customerAreaEl = document.getElementById('customer-area');
+        const customerSlotEl = document.getElementById('customer-slot');
+        const customerNoteEl = document.getElementById('customer-note');
         const filterBtns = document.querySelectorAll('.filter-btn');
-        
-        if (!serviceListContainer) return;
-        
-        // Gestionnaire d'événements unique pour les boutons de quantité (Délégation d'événements)
-        serviceListContainer.addEventListener('click', (e) => {
-            const button = e.target.closest('.quantity-change');
-            if (button) {
-                const name = button.dataset.name;
-                const amount = parseInt(button.dataset.amount, 10);
-                const input = document.querySelector(`.quantity-input[data-name="${name}"]`);
-                
-                if (!input) return;
-                
-                let currentQuantity = parseInt(input.value, 10);
-                let newQuantity = Math.max(0, currentQuantity + amount);
-                
-                updateCart(name, newQuantity);
-            }
-        });
-        
-        /**
-         * Affiche la liste des services filtrés.
-         * @param {string} filter - La catégorie à filtrer ('all', 'homme', 'femme', 'maison').
-         */
-        function renderServices(filter = 'all') {
-            const filtered = filter === 'all' ?
-                services :
-                services.filter(s => s.categories.includes(filter));
-            
-            serviceListContainer.innerHTML = filtered.map(service => {
-                const qty = cart[service.name] ? cart[service.name].quantity : 0;
-                
-                return `
-                <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 p-4 border border-gray-200 rounded-lg transition-all hover:shadow-md hover:border-blue-300">
-                    <div class="flex items-center gap-4 flex-1">
-                        <div class="bg-blue-50 rounded-full p-2">
-                            ${service.icon}
-                        </div>
-                        <div>
-                            <p class="font-bold text-base sm:text-lg text-gray-800">${service.name}</p>
-                            <p class="text-blue-600 font-semibold">${service.price.toLocaleString('fr-FR')} FC</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end sm:self-auto">
-                        <button class="quantity-change bg-gray-200 rounded-full w-9 h-9 text-2xl font-bold text-gray-600 flex items-center justify-center transition hover:bg-gray-300" data-name="${service.name}" data-amount="-1">-</button>
-                        <input type="number" value="${qty}" min="0" class="quantity-input w-16 text-center font-bold text-lg bg-transparent" data-name="${service.name}" readonly>
-                        <button class="quantity-change bg-blue-600 text-white rounded-full w-9 h-9 text-2xl font-bold flex items-center justify-center transition hover:bg-blue-700" data-name="${service.name}" data-amount="1">+</button>
-                    </div>
-                </div>`;
-            }).join('');
+
+        const requestedServiceId = new URLSearchParams(window.location.search).get('service');
+        if (requestedServiceId && getService(requestedServiceId) && !cart[requestedServiceId]) {
+            cart[requestedServiceId] = { quantity: 1 };
+            saveCart();
         }
-        
-        /**
-         * Met à jour le panier et déclenche le rendu.
-         */
-        function updateCart(name, quantity) {
-            const service = services.find(s => s.name === name);
-            
+
+        function renderServices(filter = 'all') {
+            const filtered = filter === 'all' ? services : services.filter((service) => service.categories.includes(filter));
+            serviceListContainer.innerHTML = filtered.map((service) => {
+                const qty = cart[service.id]?.quantity || 0;
+                return `
+                    <article class="service-row">
+                        <div class="flex flex-1 items-center gap-4">
+                            <span class="service-icon"><img src="${service.icon}" alt="${service.alt}" loading="lazy"></span>
+                            <div>
+                                <h3 class="text-base font-extrabold text-slate-900 sm:text-lg">${service.name}</h3>
+                                <p class="font-bold text-blue-700">${formatPrice(service.price)}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 self-end sm:self-auto">
+                            <button class="quantity-change quantity-btn bg-slate-100 text-slate-700 hover:bg-slate-200" data-id="${service.id}" data-amount="-1" aria-label="Retirer ${service.name}">-</button>
+                            <input type="number" value="${qty}" min="0" class="quantity-input w-14 bg-transparent text-center text-lg font-black" data-id="${service.id}" readonly aria-label="Quantité ${service.name}">
+                            <button class="quantity-change quantity-btn bg-blue-600 text-white hover:bg-blue-700" data-id="${service.id}" data-amount="1" aria-label="Ajouter ${service.name}">+</button>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+            updateQuantityInputs();
+        }
+
+        function updateCart(id, quantity) {
+            if (!getService(id)) return;
             if (quantity > 0) {
-                cart[name] = { price: service.price, quantity: quantity };
+                cart[id] = { quantity };
             } else {
-                delete cart[name];
+                delete cart[id];
             }
-            
-            localStorage.setItem('infiniCart', JSON.stringify(cart));
+            saveCart();
             renderCart();
             updateTotals();
             updateQuantityInputs();
+            confirmation?.classList.add('hidden');
         }
-        
-        /**
-         * Met à jour visuellement les inputs de quantité.
-         */
+
         function updateQuantityInputs() {
-            document.querySelectorAll('.quantity-input').forEach(input => {
-                const name = input.dataset.name;
-                const qty = cart[name] ? cart[name].quantity : 0;
-                input.value = qty;
+            document.querySelectorAll('.quantity-input').forEach((input) => {
+                input.value = cart[input.dataset.id]?.quantity || 0;
             });
         }
-        
-        /**
-         * Affiche le récapitulatif du panier.
-         */
+
         function renderCart() {
-            if (Object.keys(cart).length === 0) {
+            const entries = Object.entries(cart).filter(([id]) => getService(id));
+            if (!entries.length) {
                 if (cartItemsContainer) cartItemsContainer.innerHTML = '';
-                if (emptyCartMessage) emptyCartMessage.style.display = 'block';
+                if (emptyCartMessage) {
+                    emptyCartMessage.style.display = 'block';
+                    cartItemsContainer?.appendChild(emptyCartMessage);
+                }
                 return;
             }
-            
+
             if (emptyCartMessage) emptyCartMessage.style.display = 'none';
-            
-            cartItemsContainer.innerHTML = Object.entries(cart).map(([name, item]) => `
-                <div class="flex justify-between items-center text-md">
-                    <div>
-                        <p class="font-semibold text-gray-800">${name}</p>
-                        <p class="text-sm text-gray-500">${item.quantity} x ${item.price.toLocaleString('fr-FR')} FC</p>
+            cartItemsContainer.innerHTML = entries.map(([id, item]) => {
+                const service = getService(id);
+                const itemTotal = service.price * item.quantity;
+                return `
+                    <div class="flex items-start justify-between gap-4 rounded-2xl bg-stone-50 p-3">
+                        <div>
+                            <p class="font-bold text-slate-900">${service.name}</p>
+                            <p class="text-sm text-slate-500">${item.quantity} x ${formatPrice(service.price)}</p>
+                        </div>
+                        <span class="font-extrabold text-slate-900">${formatPrice(itemTotal)}</span>
                     </div>
-                    <span class="font-bold text-gray-800">${(item.quantity * item.price).toLocaleString('fr-FR')} FC</span>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
-        
-        /**
-         * Calcule et met à jour les totaux (sous-total, livraison, total).
-         */
+
         function updateTotals() {
-            const subtotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const hasItems = subtotal > 0;
-            let finalDeliveryCost = hasItems ? deliveryCost : 0;
-            
-            if (subtotal >= deliveryFreeThreshold) {
-                finalDeliveryCost = 0;
-            }
-            
-            const total = subtotal + finalDeliveryCost;
-            
-            if (subtotalEl) subtotalEl.textContent = `${subtotal.toLocaleString('fr-FR')} FC`;
-            
-            if (deliveryFeeEl) {
-                if (hasItems && subtotal >= deliveryFreeThreshold) {
-                    deliveryFeeEl.innerHTML = `<span class="text-green-600 font-bold">Offerte !</span>`;
+            const subtotal = getSubtotal();
+            const deliveryFee = getDeliveryFee(subtotal);
+            const total = subtotal + deliveryFee;
+
+            if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);
+            if (deliveryFeeEl) deliveryFeeEl.textContent = deliveryFee === 0 && subtotal > 0 ? 'Offerte' : formatPrice(deliveryFee);
+            if (totalEl) totalEl.textContent = formatPrice(total);
+            if (orderButton) orderButton.disabled = subtotal <= 0;
+
+            if (deliveryNoteEl) {
+                if (subtotal <= 0) {
+                    deliveryNoteEl.textContent = 'Livraison offerte dès 50 000 FC.';
+                } else if (subtotal >= deliveryFreeThreshold) {
+                    deliveryNoteEl.textContent = 'Bonne nouvelle : la collecte et la livraison sont offertes.';
                 } else {
-                    deliveryFeeEl.textContent = `${finalDeliveryCost.toLocaleString('fr-FR')} FC`;
+                    deliveryNoteEl.textContent = `Ajoutez ${formatPrice(deliveryFreeThreshold - subtotal)} pour obtenir la livraison offerte.`;
                 }
             }
-            
-            if (totalEl) totalEl.textContent = `${total.toLocaleString('fr-FR')} FC`;
-            
-            if (orderButton) orderButton.disabled = !hasItems;
         }
-        
-        /**
-         * Prépare et envoie la commande via WhatsApp.
-         */
+
+        function validateCustomerFields() {
+            const requiredFields = [
+                [customerNameEl, 'votre nom complet'],
+                [customerPhoneEl, 'votre numéro de téléphone'],
+                [customerAddressEl, 'votre adresse de récupération'],
+                [customerAreaEl, 'votre commune ou quartier'],
+                [customerSlotEl, 'le créneau souhaité']
+            ];
+
+            const missing = requiredFields.find(([field]) => !field?.value.trim());
+            if (missing) {
+                alert(`Veuillez renseigner ${missing[1]}.`);
+                missing[0].focus();
+                return false;
+            }
+            return true;
+        }
+
         function sendOrder() {
-            const customerName = customerNameEl.value.trim();
-            const customerAddress = customerAddressEl.value.trim();
-            
-            if (!customerName || !customerAddress) {
-                alert("Veuillez remplir votre nom et adresse");
-                return;
+            if (!Object.keys(cart).length || !validateCustomerFields()) return;
+
+            const subtotal = getSubtotal();
+            const deliveryFee = getDeliveryFee(subtotal);
+            const total = subtotal + deliveryFee;
+
+            let message = '*Nouvelle commande - Infini Pressing*\\n\\n';
+            message += `*Client :* ${customerNameEl.value.trim()}\\n`;
+            message += `*Téléphone :* ${customerPhoneEl.value.trim()}\\n`;
+            message += `*Adresse :* ${customerAddressEl.value.trim()}\\n`;
+            message += `*Commune / quartier :* ${customerAreaEl.value.trim()}\\n`;
+            message += `*Créneau souhaité :* ${customerSlotEl.value.trim()}\\n`;
+            if (customerNoteEl.value.trim()) {
+                message += `*Note :* ${customerNoteEl.value.trim()}\\n`;
             }
-            
-            if (Object.keys(cart).length === 0) return;
-            
-            let message = `*Nouvelle commande - Infini Pressing*\n\n`;
-            message += `*Client :* ${customerName}\n`;
-            message += `*Adresse :* ${customerAddress}\n\n`;
-            message += "--- *Détails de la commande* ---\n";
-            
-            for (const name in cart) {
-                const item = cart[name];
-                const itemTotal = item.quantity * item.price;
-                message += `• ${item.quantity}x *${name}* (à ${item.price.toLocaleString('fr-FR')} FC) = ${itemTotal.toLocaleString('fr-FR')} FC\n`;
-            }
-            
-            message += "\n--- *Récapitulatif* ---\n";
-            const subtotal = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const finalDeliveryCost = subtotal >= deliveryFreeThreshold ? 0 : deliveryCost;
-            const total = subtotal + finalDeliveryCost;
-            
-            message += `*Sous-total* : ${subtotal.toLocaleString('fr-FR')} FC\n`;
-            message += `*Livraison* : ${finalDeliveryCost === 0 ? 'Offerte !' : finalDeliveryCost.toLocaleString('fr-FR') + ' FC'}\n`;
-            message += `*TOTAL À PAYER* : *${total.toLocaleString('fr-FR')} FC*\n\n`;
-            message += "Merci.";
-            
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-        }
-        
-        // Gestion des filtres par catégorie
-        if (filterBtns.length > 0) {
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => {
-                        b.classList.remove('bg-blue-600', 'text-white', 'border-blue-600');
-                        b.classList.add('bg-white', 'border-gray-200', 'text-gray-600');
-                    });
-                    btn.classList.remove('bg-white', 'border-gray-200', 'text-gray-600');
-                    btn.classList.add('bg-blue-600', 'text-white', 'border-blue-600');
-                    renderServices(btn.dataset.category);
-                });
+
+            message += '\\n--- *Détails de la commande* ---\\n';
+            Object.entries(cart).forEach(([id, item]) => {
+                const service = getService(id);
+                if (!service) return;
+                message += `• ${item.quantity}x *${service.name}* (${formatPrice(service.price)}) = ${formatPrice(service.price * item.quantity)}\\n`;
             });
+
+            message += '\\n--- *Récapitulatif* ---\\n';
+            message += `*Sous-total* : ${formatPrice(subtotal)}\\n`;
+            message += `*Collecte et livraison* : ${deliveryFee === 0 ? 'Offerte' : formatPrice(deliveryFee)}\\n`;
+            message += `*TOTAL À PAYER* : *${formatPrice(total)}*\\n\\n`;
+            message += 'Merci.';
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            confirmation?.classList.remove('hidden');
         }
-        
-        if (orderButton) {
-            orderButton.addEventListener('click', sendOrder);
-        }
-        
-        // Initialisation du rendu
+
+        serviceListContainer.addEventListener('click', (event) => {
+            const button = event.target.closest('.quantity-change');
+            if (!button) return;
+            const currentQuantity = cart[button.dataset.id]?.quantity || 0;
+            updateCart(button.dataset.id, Math.max(0, currentQuantity + Number(button.dataset.amount)));
+        });
+
+        filterBtns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach((button) => button.classList.remove('active'));
+                btn.classList.add('active');
+                renderServices(btn.dataset.category);
+            });
+        });
+
+        orderButton?.addEventListener('click', sendOrder);
+        clearCartButton?.addEventListener('click', () => {
+            cart = {};
+            saveCart();
+            renderServices(document.querySelector('.filter-btn.active')?.dataset.category || 'all');
+            renderCart();
+            updateTotals();
+            confirmation?.classList.add('hidden');
+        });
+        editOrderButton?.addEventListener('click', () => confirmation?.classList.add('hidden'));
+
         renderServices();
         renderCart();
         updateTotals();
     }
-    
-    // --- EXÉCUTION INITIALE ---
-    
-    // Gestion du Splash Screen
-    handleSplashScreen();
 
-    // Initialisation selon la page
-    if (document.getElementById('service-list')) {
-        initOrderPage();
-    }
-    if (document.getElementById('tariffs-list-container')) {
-        initHomePage();
-    }
+    handleSplashScreen();
+    initHomePage();
+    initOrderPage();
 });

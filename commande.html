@@ -1,132 +1,152 @@
 <!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <title>Commander en ligne | Pressing Infini Kinshasa</title>
-    <meta name="description" content="Passez votre commande de pressing en ligne chez Infini Pressing. Sélectionnez vos articles (homme, femme, maison) et profitez de notre service de collecte à domicile à Kinshasa.">
-    
-    <!-- Favicon -->
+
+    <title>Commander en ligne | Infini Pressing Kinshasa</title>
+    <meta name="description"
+        content="Passez votre commande de pressing à domicile à Kinshasa. Sélectionnez vos articles, indiquez votre adresse et envoyez la commande via WhatsApp.">
+    <link rel="canonical" href="https://pressing-infini.vercel.app/commande.html">
+
     <link rel="icon" type="image/svg+xml" href="assets/infini_trans_gestion_logo.svg">
     <link rel="apple-touch-icon" href="assets/infini_trans_gestion_logo.svg">
     <link rel="mask-icon" href="assets/infini_trans_gestion_logo.svg" color="#2563eb">
-    
-    <!-- Stylesheets -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pressing-infini.vercel.app/commande.html">
+    <meta property="og:title" content="Commander Infini Pressing à Kinshasa">
+    <meta property="og:description" content="Composez votre panier pressing et envoyez votre commande via WhatsApp.">
+    <meta property="og:image" content="https://pressing-infini.vercel.app/assets/hero_package.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
-    <style>
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-    </style>
 </head>
-<body class="pb-10 bg-slate-50">
 
-    <!-- ===== SPLASH SCREEN ===== -->
+<body class="bg-stone-50 pb-10 text-slate-800">
     <div id="splash-screen">
         <div class="splash-ring"></div>
         <div class="splash-ring"></div>
         <div class="splash-ring"></div>
-        
         <div class="splash-logo-container">
             <div id="splash-logo">
-                <img src="assets/infini_trans_gestion_logo.svg" alt="Logo Infini Pressing" 
-                     style="height: 120px; width: 120px; object-fit: contain;" />
+                <img src="assets/infini_trans_gestion_logo.svg" alt="Logo Infini Pressing" width="120" height="120">
             </div>
             <div id="splash-brand">INFINI <span>PRESSING</span></div>
             <div id="splash-tagline">Votre pressing à domicile</div>
         </div>
-        
         <div class="splash-loader"></div>
     </div>
 
-    <header class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
-        <nav class="container mx-auto px-4 py-3 flex justify-between items-center max-w-6xl">
-            <a href="index.html" class="flex items-center gap-2">
-                <img src="assets/infini_trans_gestion_logo.svg" alt="Logo" class="h-14" loading="lazy">
-                <span class="text-lg font-bold text-gray-800 tracking-tight uppercase">INFINI PRESSING</span>
+    <header class="sticky top-0 z-50 border-b border-slate-100 bg-white/95 shadow-sm backdrop-blur-md">
+        <nav class="container mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+            <a href="index.html" class="flex items-center gap-2" aria-label="Retour accueil">
+                <img src="assets/infini_trans_gestion_logo.svg" alt="Logo Infini Pressing" class="h-12 w-12">
+                <span class="text-base font-extrabold uppercase tracking-tight text-slate-900 sm:text-lg">Infini Pressing</span>
             </a>
-            <div class="p-2 bg-blue-50 rounded-full text-blue-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-            </div>
+            <a href="index.html#tarifs" class="rounded-full bg-blue-50 px-4 py-2 text-sm font-bold text-blue-700 hover:bg-blue-100">
+                Voir tarifs
+            </a>
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 py-6 max-w-4xl">
-        
-        <!-- Filtres -->
-        <div class="mb-8">
-            <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3 px-1">Filtrer par catégorie</h2>
-            <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
-                <button data-category="all" class="filter-btn active shrink-0 px-6 py-2 rounded-full border text-sm font-bold transition-all">
-                    Tout
-                </button>
-                <button data-category="homme" class="filter-btn shrink-0 px-6 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-bold transition-all">
-                    Homme
-                </button>
-                <button data-category="femme" class="filter-btn shrink-0 px-6 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-bold transition-all">
-                    Femme
-                </button>
-                <button data-category="maison" class="filter-btn shrink-0 px-6 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-bold transition-all">
-                    Maison
-                </button>
+    <main class="container mx-auto grid max-w-6xl gap-8 px-4 py-8 lg:grid-cols-[1fr_420px]">
+        <section>
+            <div class="mb-8 rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+                <p class="mb-2 text-sm font-bold uppercase tracking-[0.2em] text-blue-600">Commande</p>
+                <h1 class="text-3xl font-extrabold text-slate-900 md:text-4xl">Sélectionnez vos articles</h1>
+                <p class="mt-3 text-slate-600">Ajoutez vos articles au panier. La collecte et la livraison coûtent 6 000 FC, offertes dès 50 000 FC.</p>
             </div>
-        </div>
 
-        <!-- Liste des services -->
-        <section class="mb-10">
-            <h2 class="text-xl font-bold text-gray-800 mb-4">Sélectionnez vos articles</h2>
-            <div id="service-list" class="space-y-3">
-                <!-- Généré par JS -->
+            <div class="mb-6">
+                <h2 class="mb-3 px-1 text-sm font-bold uppercase tracking-[0.18em] text-slate-500">Filtrer par catégorie</h2>
+                <div class="no-scrollbar flex gap-2 overflow-x-auto pb-2">
+                    <button data-category="all" class="filter-btn active shrink-0 rounded-full border px-6 py-2 text-sm font-bold transition-all">Tout</button>
+                    <button data-category="homme" class="filter-btn shrink-0 rounded-full border border-slate-200 bg-white px-6 py-2 text-sm font-bold text-slate-600 transition-all">Homme</button>
+                    <button data-category="femme" class="filter-btn shrink-0 rounded-full border border-slate-200 bg-white px-6 py-2 text-sm font-bold text-slate-600 transition-all">Femme</button>
+                    <button data-category="maison" class="filter-btn shrink-0 rounded-full border border-slate-200 bg-white px-6 py-2 text-sm font-bold text-slate-600 transition-all">Maison</button>
+                </div>
             </div>
+
+            <div id="service-list" class="space-y-3"></div>
         </section>
 
-        <!-- Panier et Finalisation -->
-        <section class="bg-white rounded-3xl p-6 shadow-xl border border-gray-100">
-            <h2 class="text-xl font-bold text-gray-800 mb-6">Finaliser ma commande</h2>
-            
-            <div id="cart-items" class="space-y-3 mb-6">
-                <p id="empty-cart-message" class="text-gray-400 italic text-center py-2">Votre panier est vide</p>
-            </div>
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+            <section class="rounded-3xl border border-slate-100 bg-white p-6 shadow-xl shadow-slate-200/60">
+                <h2 class="mb-5 text-2xl font-extrabold text-slate-900">Finaliser ma commande</h2>
 
-            <div class="border-t border-gray-100 pt-4 mb-6 space-y-2">
-                <div class="flex justify-between text-gray-600">
-                    <span>Sous-total</span>
-                    <span id="subtotal" class="font-medium">0 FC</span>
+                <div id="cart-items" class="mb-6 space-y-3">
+                    <p id="empty-cart-message" class="rounded-2xl bg-stone-50 py-6 text-center italic text-slate-400">Votre panier est vide</p>
                 </div>
-                <div class="flex justify-between text-gray-600">
-                    <span>Livraison</span>
-                    <span id="delivery-fee" class="font-medium">0 FC</span>
+
+                <div class="mb-6 space-y-2 border-t border-slate-100 pt-4">
+                    <div class="flex justify-between text-slate-600">
+                        <span>Sous-total</span>
+                        <span id="subtotal" class="font-semibold">0 FC</span>
+                    </div>
+                    <div class="flex justify-between text-slate-600">
+                        <span>Collecte et livraison</span>
+                        <span id="delivery-fee" class="font-semibold">0 FC</span>
+                    </div>
+                    <p id="delivery-note" class="rounded-xl bg-blue-50 px-3 py-2 text-sm font-semibold text-blue-700">
+                        Livraison offerte dès 50 000 FC.
+                    </p>
+                    <div class="flex justify-between pt-2 text-2xl font-black text-blue-700">
+                        <span>Total</span>
+                        <span id="total">0 FC</span>
+                    </div>
                 </div>
-                <div class="flex justify-between text-2xl font-black text-blue-600 pt-2">
-                    <span>TOTAL</span>
-                    <span id="total">0 FC</span>
+
+                <div class="mb-6 grid grid-cols-1 gap-3">
+                    <label class="field-label" for="customer-name">Nom complet</label>
+                    <input type="text" id="customer-name" autocomplete="name" placeholder="Ex. Grâce Mutombo" class="form-field">
+
+                    <label class="field-label" for="customer-phone">Téléphone</label>
+                    <input type="tel" id="customer-phone" autocomplete="tel" placeholder="Ex. +243 999 000 000" class="form-field">
+
+                    <label class="field-label" for="customer-address">Adresse de récupération</label>
+                    <input type="text" id="customer-address" autocomplete="street-address" placeholder="Avenue, numéro, référence" class="form-field">
+
+                    <label class="field-label" for="customer-area">Commune ou quartier</label>
+                    <input type="text" id="customer-area" placeholder="Ex. Gombe, Limete, Ngaliema" class="form-field">
+
+                    <label class="field-label" for="customer-slot">Créneau souhaité</label>
+                    <select id="customer-slot" class="form-field">
+                        <option value="">Choisir un créneau</option>
+                        <option>Matin : 08h - 11h</option>
+                        <option>Midi : 11h - 14h</option>
+                        <option>Après-midi : 14h - 17h</option>
+                        <option>Soir : 17h - 20h</option>
+                    </select>
+
+                    <label class="field-label" for="customer-note">Note optionnelle</label>
+                    <textarea id="customer-note" rows="3" placeholder="Instructions, articles délicats, urgence..." class="form-field resize-none"></textarea>
                 </div>
-            </div>
 
-            <div class="grid grid-cols-1 gap-4 mb-6">
-                <input type="text" id="customer-name" placeholder="Votre nom complet" 
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
-                <input type="text" id="customer-address" placeholder="Adresse de récupération" 
-                    class="w-full px-4 py-4 rounded-xl border border-gray-200 focus:ring-2 focus:ring-blue-500 outline-none transition-all">
-            </div>
+                <button id="order-button"
+                    class="flex w-full items-center justify-center gap-3 rounded-2xl bg-green-500 py-4 font-extrabold text-white shadow-lg shadow-green-500/20 transition hover:bg-green-600 disabled:bg-slate-200 disabled:text-slate-400 disabled:shadow-none"
+                    disabled>
+                    <img src="assets/whatsapp.svg" alt="" class="h-6 w-6">
+                    Commander via WhatsApp
+                </button>
 
-            <button id="order-button" 
-                class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg disabled:bg-gray-200 disabled:shadow-none" 
-                disabled>
-                <img src="assets/whatsapp.svg" alt="WhatsApp" class="h-6 w-6" loading="lazy" />
-                Commander via WhatsApp
-            </button>
-        </section>
-
+                <div id="order-confirmation" class="mt-4 hidden rounded-2xl border border-green-100 bg-green-50 p-4 text-sm text-green-800">
+                    <p class="font-bold">Commande prête dans WhatsApp.</p>
+                    <p class="mt-1">Vous pouvez modifier votre panier ou le vider après l'envoi.</p>
+                    <div class="mt-3 flex gap-2">
+                        <button id="clear-cart-button" class="rounded-full bg-white px-4 py-2 font-bold text-green-700 ring-1 ring-green-200">Vider le panier</button>
+                        <button id="edit-order-button" class="rounded-full px-4 py-2 font-bold text-green-700">Modifier</button>
+                    </div>
+                </div>
+            </section>
+        </aside>
     </main>
 
     <script src="app.js"></script>
 </body>
+
 </html>

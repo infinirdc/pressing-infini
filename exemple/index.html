@@ -1,0 +1,128 @@
+<!-- Hero Section avec Animation Laverie Moderne -->
+<section class="hero-section relative overflow-hidden bg-blue-600 pt-28 pb-32 min-h-[600px] flex items-center">
+    
+    <!-- DÉCOR D'ARRIÈRE-PLAN (L'usine/Laverie) -->
+    <div class="absolute inset-0 z-0 opacity-40">
+        <!-- Sol -->
+        <div class="absolute bottom-0 w-full h-1/4 bg-slate-200"></div>
+        
+        <!-- Mur et Fenêtres -->
+        <div class="absolute bottom-1/4 w-full h-3/4 bg-blue-500 border-b-8 border-white/20">
+            <div class="flex justify-around mt-10 px-10">
+                <div class="w-32 h-40 bg-blue-400 rounded-t-lg border-x-4 border-t-4 border-white/30"></div>
+                <div class="w-32 h-40 bg-blue-400 rounded-t-lg border-x-4 border-t-4 border-white/30"></div>
+                <div class="w-32 h-40 bg-blue-400 rounded-t-lg border-x-4 border-t-4 border-white/30"></div>
+            </div>
+        </div>
+
+        <!-- MACHINES À LAVER (Alignées au fond) -->
+        <div class="absolute bottom-[20%] left-10 flex gap-8">
+            <!-- Machine 1 -->
+            <div class="w-24 h-28 bg-white rounded-lg shadow-lg relative border-b-4 border-slate-300">
+                <div class="absolute top-2 left-2 right-2 h-4 bg-slate-100 rounded flex gap-1 px-1 items-center">
+                    <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                    <div class="w-4 h-1 bg-slate-300 rounded"></div>
+                </div>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border-4 border-slate-200 bg-blue-50 overflow-hidden">
+                    <div class="animate-spin-slow h-full w-full flex items-center justify-center">
+                        <div class="w-full h-1/2 bg-blue-200/50 absolute bottom-0"></div>
+                        <div class="w-2 h-2 bg-white rounded-full absolute top-4 left-4"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Machine 2 -->
+            <div class="w-24 h-28 bg-white rounded-lg shadow-lg relative border-b-4 border-slate-300">
+                <div class="absolute top-2 left-2 right-2 h-4 bg-slate-100 rounded flex gap-1 px-1 items-center">
+                    <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                </div>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2 w-16 h-16 rounded-full border-4 border-slate-200 bg-blue-50 overflow-hidden">
+                    <div class="animate-spin-fast h-full w-full">
+                        <div class="w-full h-3/4 bg-blue-300/60 absolute bottom-0"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- POSTE DE REPASSAGE -->
+        <div class="absolute bottom-[20%] right-20">
+            <div class="w-32 h-2 bg-slate-400 rounded-full mb-1"></div>
+            <div class="w-28 h-20 bg-white/10 rounded-t-xl border-t-2 border-white/20 relative">
+                <!-- Fer à repasser -->
+                <div class="animate-ironing absolute -top-6 left-0 w-12 h-8 bg-slate-100 rounded-tr-2xl border-b-2 border-slate-400">
+                    <div class="w-8 h-1 bg-blue-500 absolute -top-2 left-2 rounded"></div>
+                </div>
+                <!-- Vapeur -->
+                <div class="absolute -top-12 left-10 flex flex-col gap-1">
+                    <div class="animate-steam w-2 h-2 bg-white rounded-full opacity-0"></div>
+                    <div class="animate-steam-delay w-3 h-3 bg-white rounded-full opacity-0 ml-2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CAMION DE LIVRAISON -->
+        <div class="animate-truck-arrival absolute bottom-4 left-[-20%] z-10">
+            <div class="relative w-48 h-24">
+                <!-- Corps du camion -->
+                <div class="w-36 h-20 bg-blue-800 rounded-lg absolute bottom-4 left-0 shadow-xl border-l-4 border-blue-400">
+                    <div class="text-[10px] font-bold text-white p-2 leading-none">INFINI<br>PRESSING</div>
+                </div>
+                <!-- Cabine -->
+                <div class="w-12 h-12 bg-blue-800 rounded-tr-xl absolute bottom-4 left-36">
+                    <div class="w-8 h-6 bg-blue-300 rounded-tr-lg mt-1 ml-1"></div>
+                </div>
+                <!-- Roues -->
+                <div class="absolute bottom-2 left-6 w-6 h-6 bg-slate-800 rounded-full border-2 border-slate-400 animate-spin-fast"></div>
+                <div class="absolute bottom-2 left-32 w-6 h-6 bg-slate-800 rounded-full border-2 border-slate-400 animate-spin-fast"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENU TEXTUEL (Premier plan) -->
+    <div class="container mx-auto px-6 text-center relative z-20" data-aos="fade-up">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight drop-shadow-lg">
+            Le pressing qui vient à vous.
+        </h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-blue-50 font-medium">
+            Fini la corvée du linge ! Nous collectons, nettoyons avec soin et livrons vos vêtements impeccables à votre porte.
+        </p>
+        <a href="commande.html" class="bg-white text-blue-600 hover:bg-blue-50 font-bold py-4 px-10 rounded-full text-lg shadow-2xl transition-all duration-300 transform hover:scale-105 inline-block">
+            Je commande maintenant
+        </a>
+    </div>
+
+    <!-- Styles CSS spécifiques pour les animations -->
+    <style>
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes spin-fast {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes ironing {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(40px); }
+        }
+        @keyframes steam {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-40px) scale(2); opacity: 0; }
+        }
+        @keyframes truck-arrival {
+            0% { left: -20%; }
+            70% { left: 15%; }
+            100% { left: 10%; }
+        }
+
+        .animate-spin-slow { animation: spin-slow 3s linear infinite; }
+        .animate-spin-fast { animation: spin-fast 0.8s linear infinite; }
+        .animate-ironing { animation: ironing 2s ease-in-out infinite; }
+        .animate-steam { animation: steam 2s ease-out infinite; }
+        .animate-steam-delay { animation: steam 2s ease-out infinite 1s; }
+        .animate-truck-arrival { 
+            animation: truck-arrival 4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation-delay: 1s;
+        }
+    </style>
+</section>
